@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
       username == ENV["BASIC_AUTH_PK_USER"] && password == ENV["BASIC_AUTH_PK_PASSWORD"]
     end
   end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :birth_date])
+  end
 end

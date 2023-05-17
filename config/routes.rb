@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
   devise_for :users
-  get '/users/sign_up', to: 'devise/registrations#new'
+  get '/users/css/reset.css' => redirect('/assets/stylesheets/reset.css')
 end

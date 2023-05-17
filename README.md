@@ -7,7 +7,7 @@
 | nickname           | string | null: false,              |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false,              |
-| birthday           | date   | null: false,              |
+| birth_date         | date   | null: false,              |
 
 ### Association
 
@@ -58,11 +58,11 @@
 | Column      | Type       | Options                        |
 | ----------- | ---------- | ------------------------------ |
 | title       | string     | null: false,                   |
-| description | string    | null: false,                    |
-| start_date  | date     | null: false,                     |
-| end_date    | date     | null: false,                     |
+| description | string     | null: false,                   |
+| start_date  | date       | null: false,                   |
+| end_date    | date       | null: false,                   |
 | location    | string     |                                |
-| color_id    | integer     | null: false,                  |
+| color_id    | integer    | null: false,                   |
 | user        | references | null: false, foreign_key: true |
 
 ### Association
