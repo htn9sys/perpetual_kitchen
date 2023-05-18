@@ -9,13 +9,6 @@
     TODO will need to remove settings on HTML since we can't namespace it.
     TODO with the prefix, should I group by selector or property for weight savings?
 */
-@font-face {
-  font-family: "HuiFont29";
-  src: url("assets/fonts/HuiFontP29.ttf") format("truetype"),
-       url("assets/fonts/HuiFontP29.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
 /*
   TODO remove settings on BODY since we can't namespace it.
 */
@@ -50,7 +43,6 @@ th,
 td {
   margin:0;
   padding:0;
-  font-family: "HuiFontP29", sans-serif;
 }
 table {
   border-collapse:collapse;
@@ -113,7 +105,7 @@ sub {
 input,
 textarea,
 select {
-  font-family:"HuiFontP29", sans-serif;
+  font-family:inherit;
   font-size:inherit;
   font-weight:inherit;
 }

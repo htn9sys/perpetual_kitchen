@@ -1,0 +1,94 @@
+.item-main {
+  width: 100%;
+  min-width: 500px;
+  height: 100%;
+  min-height: 900px;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  font-family: 'HuiFont109', sans-serif;
+}
+
+.item-header {
+  width: 100%;
+  height: 40px;
+  font-size: 25px;
+  color: #353535d2;
+  margin-top: 4px;
+  padding-left: 15px;
+  text-shadow: 2px 2px 3px rgb(255, 255, 255);
+}
+
+.form-wrap3 {
+  width: 500px;
+  max-height: 700px;
+  background: linear-gradient(180deg, #ffecb9, #f6faec);
+  padding-bottom: 60px;
+  margin-top: 0;
+  position: relative;
+}
+/*メインページ*/
+
+.kitchen-container {
+  position: relative;
+  width: 450px;
+  height: 620px;
+  border: 1px solid #ccc; /* 1番最後に消す記述 */
+  margin-top: 15px;
+  margin-left: 25px;
+}
+
+.appliance {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: #f0f0f0;
+  border: 1px solid #999;
+  text-align: center;
+  line-height: 100px;
+  cursor: move;
+}
+
+.appliance:hover {
+  background-color: #e0e0e0;
+}
+
+/*メインページ*/
+
+.icon-button {
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.icon-button > * {
+  flex-basis: calc(19.7%);
+}
+
+.items-add-btn,
+.items-notice-btn,
+.items-calendar-btn,
+.items-user-btn,
+.items-logout-btn {
+  display: inline-block;
+  width: 100px;
+  height: 60px;
+  background: linear-gradient(180deg, #ffffff, #ffefa7);
+  border: none;
+  color: #000000d2;
+  line-height: 19px;
+  font-size: 17px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-top: 10px;
+  font-family: 'HuiFont109', sans-serif;
+  text-shadow: 1px 1px 3px rgb(255, 255, 255);
+  margin: 0;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
