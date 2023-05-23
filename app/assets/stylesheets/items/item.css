@@ -33,10 +33,65 @@
   position: relative;
   width: 450px;
   height: 620px;
-  border: 1px solid #ccc; /* 1番最後に消す記述 */
+  border: 1px solid #ccc;
   margin-top: 15px;
   margin-left: 25px;
+  overflow: hidden;
 }
+
+.slide-container {
+  position: absolute;
+  width: 1800px; /* 初期値は指定しておきますが、JavaScriptで動的に変更します */
+  height: 620px;
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.slide {
+  width: 450px;
+  height: 620px;
+}
+
+.slide-1 {
+  background-color: #f0f0f0;
+}
+
+.slide-2 {
+  background-color: #e0e0e0;
+}
+
+.slide-3 {
+  background-color: #d0d0d0;
+}
+
+.slide-4 {
+  background-color: #c0c0c0;
+}
+
+
+/* 後で色変える */
+.slide-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+}
+
+.slide-control.left {
+  left: 0;
+}
+
+.slide-control.right {
+  right: 0;
+}
+
 
 .appliance {
   position: absolute;
@@ -47,13 +102,140 @@
   text-align: center;
   line-height: 100px;
   cursor: move;
+  z-index: 3;
 }
 
 .appliance:hover {
   background-color: #e0e0e0;
 }
 
-/*メインページ*/
+.kitchen-container .appliance {
+  left: 0;
+  top: 0;
+  right: auto;
+  bottom: auto;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.refrigerator {
+  width: 100px;
+  height: 200px;
+  background: linear-gradient(180deg, #ffffff, #dfdfdf);
+  perspective: 800px;
+  border-radius: 2px;
+  border: 10px solid #ffffff;
+  box-sizing: border-box;
+}
+
+.door {
+  width: 100px;
+  height: 200px;
+  background: linear-gradient(180deg, #ffffff, #f8f8f8);
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  transform-origin: left;
+  border-radius: 2px;
+  border: none;
+  z-index: 1;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+
+.door-handle {
+  width: 10px;
+  height: 50px;
+  background-color: #d4cccc;
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  border-radius: 1px;
+  transform: translate(0, -50%);
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 3px rgba(0, 0, 0, 0.23);
+}
+
+#open-door {
+  margin-top: 10px;
+}
+
+#close-door {
+  margin-top: 10px;
+}
+
+.shelf {
+  width: 200px;
+  height: 150px;
+  background-color: beige;
+  border: none;
+}
+
+.left-door {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(180deg, #ffffff, #ebebeb);
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  transform-origin: left;
+  border-radius: 2px;
+  border: none;
+  z-index: 2;
+  color: black;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 3px rgba(0, 0, 0, 0.23);
+}
+
+#open-door_s {
+  margin-top: 10px;
+}
+
+#close-door_s {
+  margin-top: 10px;
+}
+
+.right-drawers {
+  width: 50%;
+  height: 100%;
+  background-color: #f2f2f2;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer {
+  width: 100%;
+  height: 33.33%;
+  background: linear-gradient(180deg, #ffffff, #eeeeee);
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 3px rgba(0, 0, 0, 0.23);
+}
+
+.drawer:hover {
+  background: linear-gradient(180deg, #ffffff, #eeeeee);
+  border-radius: 3px;
+}
+
+.shelf.open .left-door {
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+.shelf.open .right-drawers {
+  transform: translateX(50%);
+  z-index: 2;
+}
+
+
+/* shelf test */
 
 .icon-button {
   position: absolute;

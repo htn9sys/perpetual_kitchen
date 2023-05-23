@@ -4,18 +4,23 @@
       <B>Perpetual Kitchen
     </div>
 
-
-    <div class="user-items">
-        <!-- ログインユーザーのアイテム -->
-    </div>
-
     <div class="kitchen-container">
-      <script src="main.js"></script>
-      <div id="refrigerator" class="appliance refrigerator">冷蔵庫</div>
-      <div id="shelf" class="appliance shelf">棚</div>
+      <div class="slide-container">
+        <div class="appliance">
+          <%= render 'shared/shelf' %>
+          <%= render 'shared/refrigerator' %>
+        </div>
+        <div class="slide slide-1"></div>
+        <div class="slide slide-2"></div>
+        <div class="slide slide-3"></div>
+        <div class="slide slide-4"></div>
+      </div>
+      <div class="slide-control left">&lt;</div>
+      <div class="slide-control right">&gt;</div>
     </div>
-  
 
+    <script src="button.js"></script>
+  
     <div class="icon-button">
       <button type="submit" class="items-add-btn">食材追加<br>┏</button>
       <button type="submit" class="items-notice-btn">お知らせ<br>╋</button>
