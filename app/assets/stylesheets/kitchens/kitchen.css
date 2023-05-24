@@ -27,6 +27,7 @@
   margin-top: 0;
   position: relative;
 }
+
 /*メインページ*/
 
 .kitchen-container {
@@ -41,46 +42,41 @@
 
 .slide-container {
   position: absolute;
-  width: 1800px; /* 初期値は指定しておきますが、JavaScriptで動的に変更します */
-  height: 620px;
+  width: 1800px;
+  height: 520px;
   display: flex;
   transition: transform 0.3s ease-in-out;
+  background-image: url("kabegami.png");
+}
+
+.slide-container.bottom {
+  bottom: 0;
+  height: 100px;
+  background-image: url("yuka.png");
+  background-size: 100% auto;
+}
+
+.slide-container.top {
+  height: 520px;
+  background-color: #ffffff;
 }
 
 .slide {
   width: 450px;
-  height: 620px;
+  height: 520px;
 }
 
-.slide-1 {
-  background-color: #f0f0f0;
-}
-
-.slide-2 {
-  background-color: #e0e0e0;
-}
-
-.slide-3 {
-  background-color: #d0d0d0;
-}
-
-.slide-4 {
-  background-color: #c0c0c0;
-}
-
-
-/* 後で色変える */
 .slide-control {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
-  background-color: rgba(0, 0, 0, 0.3);
-  color: #fff;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #f0d383;
   font-size: 24px;
   text-align: center;
-  line-height: 50px;
+  line-height: 40px;
   cursor: pointer;
 }
 
@@ -92,53 +88,35 @@
   right: 0;
 }
 
-
-.appliance {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  background-color: #f0f0f0;
-  border: 1px solid #999;
-  text-align: center;
-  line-height: 100px;
-  cursor: move;
-  z-index: 3;
-}
-
-.appliance:hover {
-  background-color: #e0e0e0;
-}
-
-.kitchen-container .appliance {
-  left: 0;
-  top: 0;
-  right: auto;
-  bottom: auto;
-  transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
+/* 冷蔵庫 */
 
 .refrigerator {
-  width: 100px;
-  height: 200px;
+  position: absolute;
+  width: 150px;
+  height: 300px;
   background: linear-gradient(180deg, #ffffff, #dfdfdf);
   perspective: 800px;
   border-radius: 2px;
   border: 10px solid #ffffff;
   box-sizing: border-box;
+  text-align: center;
+  line-height: 100px;
+  cursor: move;
+  z-index: 3;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .door {
-  width: 100px;
-  height: 200px;
-  background: linear-gradient(180deg, #ffffff, #f8f8f8);
+  width: 150px;
+  height: 300px;
+  background: linear-gradient(180deg, #ffffff, #f1f0f0fd);
   position: absolute;
   transform-style: preserve-3d;
   transition: transform 0.5s;
   transform-origin: left;
   border-radius: 2px;
   border: none;
-  z-index: 1;
+  z-index: 2;  /* Updated: Changed z-index from 1 to 2 */
   margin-top: -10px;
   margin-left: -10px;
 }
@@ -164,11 +142,21 @@
   margin-top: 10px;
 }
 
+/* 冷蔵庫 */
+
+/* 棚 */
+
 .shelf {
+  position: absolute;
   width: 200px;
   height: 150px;
-  background-color: beige;
+  background: linear-gradient(180deg, #ffffff, #dfdfdf);
   border: none;
+  cursor: move;
+  z-index: 3;
+  text-align: center;
+  line-height: 100px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 3px rgba(0, 0, 0, 0.23);
 }
 
 .left-door {
@@ -183,7 +171,7 @@
   transform-origin: left;
   border-radius: 2px;
   border: none;
-  z-index: 2;
+  z-index: 3;  /* Updated: Changed z-index from 2 to 3 */
   color: black;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 3px rgba(0, 0, 0, 0.23);
 }
@@ -197,7 +185,7 @@
 }
 
 .right-drawers {
-  width: 50%;
+  width: 47%;
   height: 100%;
   background-color: #f2f2f2;
   position: absolute;
@@ -219,23 +207,17 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 3px rgba(0, 0, 0, 0.23);
 }
 
-.drawer:hover {
-  background: linear-gradient(180deg, #ffffff, #eeeeee);
-  border-radius: 3px;
-}
-
-.shelf.open .left-door {
-  transform: translateX(-50%);
-  z-index: 3;
-}
-
-.shelf.open .right-drawers {
-  transform: translateX(50%);
+.drawer.open {
+  transform: translateX(0) scale3d(1, 1, 1);
   z-index: 2;
 }
 
+.drawer.closed {
+  transform: translateX(100%) scale3d(1, 0, 1);
+  z-index: 1;
+}
 
-/* shelf test */
+/* 棚 */
 
 .icon-button {
   position: absolute;
