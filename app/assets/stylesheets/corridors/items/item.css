@@ -1,0 +1,47 @@
+#preview {
+  display: flex;
+  flex-wrap: wrap;
+  width: 450px;
+  height: 620px;
+  justify-content: space-between;
+  margin: 50px 0 0 50px;
+}
+
+#preview-kitchen,
+#preview-corridor,
+#preview-garden,
+#preview-storage {
+  width: 50%;
+  height: 50%;
+  transform: scale(0.8);
+  transform-origin: top left;
+  overflow: hidden;
+  box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.253), 1px 3px 10px rgba(0, 0, 0, 0.329);
+}
+
+#preview-kitchen {
+  order: 1;
+}
+
+#preview-corridor {
+  order: 2;
+}
+
+#preview-garden {
+  order: 3;
+}
+
+#preview-storage {
+  order: 4;
+}
+
+/* 各プレビューコンテナの内部コンテンツのスタイル */
+#inner-kitchen,
+#inner-corridor,
+#inner-garden,
+#inner-storage {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+}

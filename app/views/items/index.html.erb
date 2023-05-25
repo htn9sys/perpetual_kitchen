@@ -1,0 +1,63 @@
+<div class='item-main'>
+  <div class='form-wrap3'>
+    <%= render 'shared/header' %>
+
+    <div id="preview">
+      <div id="preview-kitchen" onclick="navigateToPreviewPage('/kitchens')">
+        <div id="inner-kitchen">
+          <div class="preview"></div>
+        </div>
+      </div>
+      <div id="preview-corridor" onclick="navigateToPreviewPage('/corridors')">
+        <div id="inner-corridor">
+          <div class="preview"></div>
+        </div>
+      </div>
+      <div id="preview-garden" onclick="navigateToPreviewPage('/gardens')">
+        <div id="inner-garden">
+          <div class="preview"></div>
+        </div>
+      </div>
+      <div id="preview-storage" onclick="navigateToPreviewPage('/storages')">
+        <div id="inner-storage">
+          <div class="preview"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function navigateToPreviewPage(url) {
+        window.location.href = url; // クリックされたプレビューのURLに画面遷移
+      }
+
+      $(document).ready(function() {
+        const previewUrls = ['/kitchens', '/corridors', '/gardens', '/storages'];
+        function addPreviewElements(url, containerId, previewClass, excludeClass) {
+          $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'html',
+            success: function(response) {
+              const tempContainer = $('<div>').html(response);
+              const previewElements = tempContainer.find(previewClass);
+              const excludeElements = tempContainer.find(excludeClass);
+              excludeElements.hide();
+              $('#' + containerId).html(previewElements);
+            },
+            error: function() {
+            }
+          });
+        }
+
+        addPreviewElements(previewUrls[0], 'preview-kitchen', '.slide-container', '.refrigerator, .shelf');
+        addPreviewElements(previewUrls[1], 'preview-corridor', '.slide-container_corridor', '.refrigerator, .shelf');
+        addPreviewElements(previewUrls[2], 'preview-garden', '.slide-container_garden', '.refrigerator, .shelf');
+        addPreviewElements(previewUrls[3], 'preview-storage', '.slide-container_storage', '.refrigerator, .shelf');
+      });
+    </script>
+
+
+    <script src="button.js"></script>
+    <%= render 'shared/icon' %>
+  </div>
+</div>
