@@ -1,17 +1,15 @@
 <div class='item-main'>
   <div class='form-wrap3'>
-    <div class='item-header'>
-      <B>Perpetual Kitchen
-    </div>
-
+    <%= render 'shared/header' %>
+    
     <div class="kitchen-container">
       <div class="slide-container">
         <%= render 'shared/shelf' %>
         <%= render 'shared/refrigerator' %>
-        <div class="slide slide-1"></div>
-        <div class="slide slide-2"></div>
-        <div class="slide slide-3"></div>
-        <div class="slide slide-4"></div>
+        <div class="slide slide-1">Kitchen ①</div>
+        <div class="slide slide-2">Kitchen ②</div>
+        <div class="slide slide-3">Kitchen ③</div>
+        <div class="slide slide-4">Kitchen ④</div>
       </div>
       <div class="slide-container bottom"></div>
       <div class="slide-control left">&lt;</div>
@@ -19,13 +17,6 @@
     </div>
 
     <script src="button.js"></script>
-  
-    <div class="icon-button">
-      <button type="submit" class="items-add-btn">食材追加<br>┏</button>
-      <button type="submit" class="items-notice-btn">お知らせ<br>╋</button>
-      <button type="submit" class="items-calendar-btn">カレンダー<br>┗</button>
-      <button type="submit" class="items-user-btn">自分の情報<br>┓</button>
-      <button type="submit" class="items-logout-btn">ログアウト<br>┯</button>
-    </div>
+    <%= render 'shared/icon' %>
   </div>
 </div>

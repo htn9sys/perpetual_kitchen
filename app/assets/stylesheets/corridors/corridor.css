@@ -1,0 +1,15 @@
+.slide-container_corridor {
+  position: absolute;
+  width: 900px;
+  height: 520px;
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+  background-image: url("corridor.png");
+}
+
+.slide-container_corridor.bottom {
+  bottom: 0;
+  height: 100px;
+  background-image: url("corridor_bottom.png");
+  background-size: 100% auto;
+}

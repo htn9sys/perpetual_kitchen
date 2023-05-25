@@ -14,7 +14,7 @@ $(function() {
       $(this).css({ top: positions[0] + 'px', left: positions[1] + 'px' });
     }
   });
-  let slideContainer = $('.slide-container');
+  let slideContainer = $('.slide-container, .slide-container_garden, .slide-container_storage, .slide-container_corridor');
   let slides = $('.slide');
   let slideWidth = $('.kitchen-container').width();
   let totalSlides = slides.length;

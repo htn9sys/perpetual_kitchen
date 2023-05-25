@@ -1,0 +1,15 @@
+.slide-container_garden {
+  position: absolute;
+  width: 900px;
+  height: 520px;
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+  background-image: url("niwa_top.png");
+}
+
+.slide-container_garden.bottom {
+  bottom: 0;
+  height: 100px;
+  background-image: url("niwa_bottom.png");
+  background-size: 100% auto;
+}
