@@ -13,7 +13,7 @@
 
 - has_many :items
 - has_many :calendars
-- has_many :arias
+- has_many :areas
 
 ## items テーブル
 
@@ -28,16 +28,16 @@
 | date         | integer    | null: false,                   |
 | notice_id    | integer    | null: false,                   |
 | user         | references | null: false, foreign_key: true |
-| aria         | references | null: false, foreign_key: true |
+| area         | references | null: false, foreign_key: true |
 | calendar     | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :aria
+- belongs_to :area
 - belongs_to :calendar
 
-## arias テーブル
+## areas テーブル
 
 | Column   | Type       | Options                        |
 | -------- | ---------- | ------------------------------ |

@@ -1,32 +1,4 @@
 $(function() {
-  const containerHeight = 520; // 制約範囲の高さ
-
-  $(".shelf").draggable({
-    containment: ".slide-container", // 制約範囲を指定
-    start: function(event, ui) {
-      ui.helper.css('z-index', '3');
-    },
-    stop: function(event, ui) {
-      const id = $(this).attr('id');
-      const top = ui.position.top;
-      const left = ui.position.left;
-      localStorage.setItem(id + "_top", top);
-      localStorage.setItem(id + "_left", left);
-      $(this).css('z-index', '');
-    }
-  });
-
-  // ページ読み込み時に要素の位置を復元
-  $(".shelf").each(function() {
-    const id = $(this).attr('id');
-    const top = localStorage.getItem(id + "_top");
-    const left = localStorage.getItem(id + "_left");
-    if (top && left) {
-      $(this).css({ top: top + 'px', left: left + 'px', position: 'absolute' });
-    }
-  });
-
-
   let doorOpen = false;
   let isDragging = false;
 

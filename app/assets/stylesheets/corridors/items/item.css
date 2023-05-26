@@ -11,6 +11,7 @@
 #preview-corridor,
 #preview-garden,
 #preview-storage {
+  border-radius: 10px;
   width: 50%;
   height: 50%;
   transform: scale(0.8);

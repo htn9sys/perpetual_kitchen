@@ -1,0 +1,268 @@
+/* 冷蔵庫 */
+
+.refrigerator {
+  position: absolute;
+  width: 120px;
+  height: 240px;
+  background: linear-gradient(180deg, #ffffff, #dfdfdf);
+  perspective: 800px;
+  border-radius: 2px;
+  border: 10px solid #ffffff;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 100px;
+  cursor: move;
+  z-index: 3;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.door {
+  width: 120px;
+  height: 240px;
+  background: linear-gradient(180deg, #ffffff, #f1f0f0fd);
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  transform-origin: left;
+  border-radius: 2px;
+  border: none;
+  z-index: 2;  /* Updated: Changed z-index from 1 to 2 */
+  margin-top: -10px;
+  margin-left: -10px;
+}
+
+.door-handle {
+  width: 10px;
+  height: 50px;
+  background-color: #d4cccc;
+  position: absolute;
+  top: 40%;
+  right: 5px;
+  border-radius: 1px;
+  transform: translate(0, -50%);
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 3px rgba(0, 0, 0, 0.23);
+}
+
+#open-door {
+  margin-top: 10px;
+}
+
+#close-door {
+  margin-top: 10px;
+}
+
+/* 冷蔵庫 */
+
+/* 冷蔵庫 2 */
+
+.refrigerator_large {
+  position: relative;
+  width: 200px;
+  height: 350px;
+  background-color: #ff0000;
+}
+
+.door-left {
+  position: absolute;
+  transform-style: preserve-3d;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #ffee03;
+  transition: transform 0.5s;
+  transform-origin: left;
+}
+
+.door-right {
+  position: absolute;
+  transform-style: preserve-3d;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #0307ff;
+  transition: transform 0.5s;
+  transform-origin: right;
+}
+
+.door-left.open {
+  transform: translateX(-100%) rotateY(-90deg);
+}
+
+.door-right.open {
+  transform: translateX(100%) rotateY(90deg);
+}
+
+.large_bottom {
+  position: relative;
+  top: 50%;
+  width: 100%;
+  height: 50%;
+}
+
+.ice-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 34%;
+  background-color: #00ff6a;
+}
+
+.ice-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 34%;
+  background-color: #ff00dd;
+}
+
+.vegetable-compartment {
+  position: absolute;
+  width: 100%;
+  height: 33%;
+  background-color: #8400ff;
+  top: 59.5px;
+}
+
+.freezer-compartment {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 33%;
+  background-color: #ffc400;
+}
+
+.ice-left.enlarge,
+.ice-right.enlarge,
+.vegetable-compartment.enlarge,
+.freezer-compartment.enlarge {
+  transform: scale(1.2);
+}
+
+
+/* 冷蔵庫 2 */
+
+/* 棚 */
+
+.shelf {
+  position: absolute;
+  width: 200px;
+  height: 150px;
+  background: linear-gradient(180deg, #ffffff, #dfdfdf);
+  border: none;
+  cursor: move;
+  z-index: 3;
+  text-align: center;
+  line-height: 100px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 3px rgba(0, 0, 0, 0.23);
+}
+
+.left-door {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(180deg, #ffffff, #ebebeb);
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  transform-origin: left;
+  border-radius: 2px;
+  border: none;
+  z-index: 3;  /* Updated: Changed z-index from 2 to 3 */
+  color: black;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 3px rgba(0, 0, 0, 0.23);
+}
+
+#open-door_s {
+  margin-top: 10px;
+}
+
+#close-door_s {
+  margin-top: 10px;
+}
+
+.right-drawers {
+  width: 47%;
+  height: 100%;
+  background-color: #f2f2f2;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer {
+  width: 100%;
+  height: 33.33%;
+  background: linear-gradient(180deg, #ffffff, #eeeeee);
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 3px rgba(0, 0, 0, 0.23);
+}
+
+.drawer.open {
+  transform: translateX(0) scale3d(1, 1, 1);
+  z-index: 2;
+}
+
+.drawer.closed {
+  transform: translateX(100%) scale3d(1, 0, 1);
+  z-index: 1;
+}
+
+/* 棚 */
+
+/* 箱 */
+
+.box {
+  position: relative;
+  width: 200px;
+  height: 100px;
+  background-image: url("box.png");
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 3px rgba(0, 0, 0, 0.23);
+}
+
+.box_over {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(207, 159, 122, 0.637), rgba(97, 73, 57, 0.651));
+}
+
+.flap {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background-color: brown;
+  transition: transform 0.3s ease;
+}
+
+.left-flap {
+  left: 50%;
+  transform-origin: left center;
+}
+
+.right-flap {
+  right: 50%;
+  transform-origin: right center;
+}
+
+.open-flap {
+  transform: perspective(800px) rotateY(-110deg);
+}
+
+/* 箱 */

@@ -1,0 +1,38 @@
+<div class="box">
+  <div class="box_over"></div>
+</div>
+
+<script>
+  $(function() {
+    const containerHeight = 520; // 制約範囲の高さ
+
+    $(".box").each(function() {
+      const id = $(this).attr('id');
+      let storedPosition = localStorage.getItem(id);
+      if (storedPosition) {
+        let positions = storedPosition.split(',');
+        $(this).css({ top: positions[0] + 'px', left: positions[1] + 'px', position: 'absolute' });
+      }
+    });
+
+    $(".box").draggable({
+      containment: ".slide-container", // 制約範囲を指定
+      start: function(event, ui) {
+        ui.helper.css('z-index', '3');
+      },
+      stop: function(event, ui) {
+        const id = $(this).attr('id');
+        const top = ui.position.top;
+        const left = ui.position.left;
+        localStorage.setItem(id, top + ',' + left);
+        $(this).css('z-index', '');
+      }
+    });
+
+    $(".box").click(function() {
+      $(this).toggleClass("open");
+      $(this).css('z-index', '3');
+    });
+  });
+
+</script>

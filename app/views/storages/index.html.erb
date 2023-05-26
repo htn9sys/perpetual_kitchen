@@ -4,8 +4,29 @@
     
     <div class="kitchen-container">
       <div class="slide-container_storage">
-        <div class="slide slide-1">Storage ①</div>
-        <div class="slide slide-2">Storage ②</div>
+        <%= render 'shared/refrigerator' %>
+        <script>
+        $(function() {
+          $(".refrigerator").draggable({
+            containment: ".slide-container_storage", // 行動範囲を .slide-container_storage 内に制限
+            stop: function(event, ui) {
+              // ドラッグ後の要素の位置をローカルストレージに保存
+              localStorage.setItem(this.id + "_storage", ui.position.top + ',' + ui.position.left);
+            }
+          });
+
+          // ページ読み込み時に要素の位置を復元
+          $(".refrigerator").each(function() {
+            let storedPosition = localStorage.getItem(this.id + "_storage");
+            if (storedPosition) {
+              let positions = storedPosition.split(',');
+              $(this).css({ top: positions[0] + 'px', left: positions[1] + 'px' });
+            }
+          });
+        });
+        </script>
+        <div class="slide slide-1">Storage</div>
+        <div class="slide slide-2">Storage 2</div>
       </div>
       <div class="slide-container_storage bottom"></div>
       <div class="slide-control left">&lt;</div>
