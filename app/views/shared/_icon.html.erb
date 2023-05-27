@@ -5,8 +5,9 @@
   
   <button type="button" class="items-notice-btn">お知らせ<br>╋</button>
   <button type="button" class="items-calendar-btn">カレンダー<br>┗</button>
-  <button type="button" class="items-user-btn">自分の情報<br>┓</button>
-  
+  <%= link_to edit_user_registration_path, class: "button-link" do %>
+    <button type="button" class="items-user-btn">自分の情報<br>┓</button>
+  <% end %>
   <%= link_to destroy_user_session_path, method: :delete, class: "button-link logout" do %>
     <button type="button" class="items-logout-btn">ログアウト<br>┯</button>
   <% end %>

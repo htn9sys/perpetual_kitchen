@@ -12,5 +12,14 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :birth_date])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:nickname, :email, :birth_date, :current_password])
+  end
+
+  def current_password_valid?
+    return unless password.present? || password_confirmation.present?
+
+    unless valid_password?(current_password)
+      errors.add(:current_password, 'が正しくありません')
+    end
   end
 end

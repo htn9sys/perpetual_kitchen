@@ -1,43 +1,57 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'registration-main', local: true, method: :patch do |f| %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class='form-wrap'>
+  <div class='form-header'>
+    <h1 class='form-header-text'>
+      登録情報の変更
+    </h1>
+  </div>
+  
+  <div class='login-flash-message'>
+    <%= render 'devise/shared/error_messages', resource: @user %>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">nickname</label>
+    </div>
+    <%= f.text_field :nickname, class:"input-default", id:"nickname", placeholder:"ぱーぺき", maxlength:"40" %>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">email</label>
+    </div>
+    <%= f.email_field :email, class:"input-default", id:"email", placeholder:"PC・携帯どちらでもOK", autofocus: true %>
   </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">birthday</label>
+    </div>
+    <div class='input-birth-wrap'>
+      <%= raw sprintf(
+                f.date_select(
+                  :birth_date,
+                  class:'select-birth',
+                  id:"birth-date",
+                  use_month_numbers: true,
+                  prompt:'--',
+                  start_year: 1930,
+                  end_year: (Time.now.year - 5),
+                  date_separator: '%s'),
+                "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">password</label>
+    </div>
+      <%= f.password_field :current_password, class: "input-default", id: "current-password", placeholder: "登録済みのパスワード" %>
+    </div>
+  <div class='register-btn'>
+    <%= f.submit "更新" ,class:"register-blue-btn", id: "submit-btn" %>
+    <script src="button.js"></script>
   </div>
+  <div class='footer-text'>© Perpetual Kitchen</div>
+</div>
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>

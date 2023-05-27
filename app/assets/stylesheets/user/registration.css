@@ -25,7 +25,7 @@
   height: 40px;
   text-align: center;
   font-size: 20px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .form-header-text {
@@ -64,7 +64,7 @@
 .input-default {
   width: 70%;
   margin-top: 5px;
-  height: 30px;
+  height: 20px;
   padding: 10px 16px 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
@@ -105,7 +105,7 @@
 .input-name {
   width: 130px;
   margin: 5px 10px 0 10px;
-  height: 40px;
+  height: 30px;
   line-height: 30px;
   padding: 10px 16px 8px;
   border-radius: 4px;
@@ -136,7 +136,7 @@
 
 .input-birth-wrap p {
   line-height: 50px;
-  padding: 0 5px;
+  padding: 0 3px;
 }
 
 .field_with_errors {

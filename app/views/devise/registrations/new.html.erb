@@ -7,8 +7,9 @@
       会員登録
     </h1>
   </div>
-  
-  <%#= render 'shared/error_messages', model: @user, f: f %>
+  <div class='login-flash-message'>
+    <%= render 'devise/shared/error_messages', resource: @user %>
+  </div>
 
   <div class="form-group">
     <div class='form-text-wrap'>
@@ -55,14 +56,12 @@
   </div>
   <div class="form-group">
     <p class='form-info-text'>
-      安心してご利用いただくために、<br>お客様ご自身の情報登録にご協力をお願いします。<br>他のお客さまに公開されることはありません。
+      ご本人さまの情報登録にご協力をお願いします。<br>他のお客さまに公開されることはありません。
     </p>
   </div>
   <div class="form-group">
     <h2 class='form-bottom-text'>
-      「登録」のボタンを押すことにより、
-      <br><span>利用規約</span>
-      に同意したものとみなします。
+      「登録」のボタンを押す前に、<span>利用規約</span>をご一読ください。
     </h2>
   </div>
   <div class='register-btn'>
