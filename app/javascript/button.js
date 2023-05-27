@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-  var submitButton = document.getElementById("submit-btn");
+  const submitButton = document.getElementById("submit-btn");
 
   submitButton.classList.add("register-blue-btn");
 

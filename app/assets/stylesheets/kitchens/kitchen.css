@@ -132,6 +132,13 @@
   justify-content: space-around;
 }
 
+.icon-button button a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+
 .icon-button > * {
   flex-basis: calc(19.7%);
 }
