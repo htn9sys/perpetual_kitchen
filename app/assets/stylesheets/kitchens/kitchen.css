@@ -72,12 +72,27 @@
 }
 
 .slide {
-  width: 450px;
-  height: 520px;
+  position: absolute;
   text-shadow: 1px 1px 3px rgb(255, 255, 255);
   color: rgb(77, 81, 82);
   font-size: 22px;
-  padding: 10px 0 0 20px;
+  margin: 10px 0 0 20px;
+}
+
+.slide.slide-1 {
+  left: 0;
+}
+
+.slide.slide-2 {
+  left: 450px;
+}
+
+.slide.slide-3 {
+  left: 900px;
+}
+
+.slide.slide-4 {
+  left: 1350px;
 }
 
 .slide-control {

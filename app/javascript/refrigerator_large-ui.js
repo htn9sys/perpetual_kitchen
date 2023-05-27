@@ -44,6 +44,8 @@ $(function() {
       if (rightDoorOpen) {
         $(this).find('.door-right').css("transform", "rotateY(0)");
         rightDoorOpen = false;
+      } else {
+        event.stopPropagation();
       }
     }
   });
@@ -51,5 +53,6 @@ $(function() {
   // 要素の拡大・縮小アニメーション
   $(".ice-left, .ice-right, .vegetable-compartment, .freezer-compartment").on("click", function() {
     $(this).toggleClass("enlarge");
+    $(this).css("z-index", "9999");
   });
 });
