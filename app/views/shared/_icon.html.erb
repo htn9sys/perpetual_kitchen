@@ -4,7 +4,11 @@
   <% end %>
   
   <button type="button" class="items-notice-btn">お知らせ<br>╋</button>
-  <button type="button" class="items-calendar-btn">カレンダー<br>┗</button>
+
+  <%= link_to calendars_path, class: "button-link" do %>
+    <button type="button" class="items-calendar-btn">カレンダー<br>┗</button>
+  <% end %>
+
   <%= link_to edit_user_registration_path, class: "button-link" do %>
     <button type="button" class="items-user-btn">自分の情報<br>┓</button>
   <% end %>
