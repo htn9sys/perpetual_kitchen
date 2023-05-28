@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :gardens
   resources :storages
   resources :corridors
+  resources :calendars
 end

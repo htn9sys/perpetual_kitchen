@@ -1,6 +1,6 @@
 <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'registration-main', local: true, method: :patch do |f| %>
 
-<div class='form-wrap'>
+<div class='form-wrap_edit'>
   <div class='form-header'>
     <h1 class='form-header-text'>
       登録情報の変更
@@ -52,6 +52,6 @@
     <%= f.submit "更新" ,class:"register-blue-btn", id: "submit-btn" %>
     <script src="button.js"></script>
   </div>
-  <div class='footer-text'>© Perpetual Kitchen</div>
+  <%= render 'shared/icon' %>
 </div>
 <% end %>
