@@ -1,0 +1,19 @@
+<div class="icon-button">
+  <div class="button-container">
+    <button type="button" id="select-button2" class="items-add-btn">収納タイプ<br>追加 ┏</button>
+    <div id="candidates-container2" class="candidates-container"></div>
+  </div>
+  
+  <button type="button" class="items-notice-btn">お知らせ<br>╋</button>
+
+  <%= link_to calendars_path, class: "button-link" do %>
+    <button type="button" class="items-calendar-btn">カレンダー<br>┗</button>
+  <% end %>
+
+  <%= link_to edit_user_registration_path, class: "button-link" do %>
+    <button type="button" class="items-user-btn">自分の情報<br>┓</button>
+  <% end %>
+  <%= link_to destroy_user_session_path, method: :delete, class: "button-link logout" do %>
+    <button type="button" class="items-logout-btn">ログアウト<br>┯</button>
+  <% end %>
+</div>

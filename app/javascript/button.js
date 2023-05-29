@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
   const submitButton = document.getElementById("submit-btn");
 
-  submitButton.classList.add("register-blue-btn");
+  submitButton.classList.add("register-blue-btn, destroy-blue-btn");
 
   submitButton.addEventListener("mouseenter", function() {
     submitButton.style.transform = "translate(-3px, -3px) scale(1.05)";

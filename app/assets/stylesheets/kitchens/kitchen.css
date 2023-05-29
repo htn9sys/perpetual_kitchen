@@ -123,7 +123,7 @@
 
 .icon-button {
   position: absolute;
-  bottom: 1px;
+  bottom: 0px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -165,5 +165,56 @@
   transition: transform 0.3s, box-shadow 0.3s;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
+
+.button-container {
+  position: relative;
+  display: inline-block;
+  font-size: 16px;
+  color: #4b4b4b;
+  text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.705);
+  text-align: left;
+}
+
+.items-add-btn {
+  position: relative;
+  z-index: 1;
+  /* その他のスタイル */
+}
+
+.items-add-btn .icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-color: #333;
+}
+
+.candidates-container {
+  display: none;
+  position: absolute;
+  top: -145px;
+  left: 23px;
+  width: 80px;
+  padding: 10px;
+  background-color: #f9f9f93a;
+  border: 1px solid #cccccc00;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.candidates-container::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 20px;
+  transform: translateX(-50%);
+  border-style: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: #f9f9f9a8 transparent transparent transparent;
+}
+
+.candidate {
+  padding: 5px 0;
+}
+
 
 /*全ページ共通_フッター*/

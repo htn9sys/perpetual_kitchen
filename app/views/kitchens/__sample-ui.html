@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>オブジェクト増やすミニアプリ</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      margin: 10px;
+      position: absolute;
+      cursor: move;
+    }
+
+    .box.open {
+      background-color: green;
+    }
+
+    .delete-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>オブジェクト増やすミニアプリ</h1>
+  <button id="add-object-btn">オブジェクトを追加</button>
+  <div class="slide-container"></div>
+
+  <script>
+  $(document).ready(function() {
+  const maxObjects = 10; // 最大オブジェクト数
+  let currentObjectCount = 0; // 現在のオブジェクト数
+
+  function createObject() {
+    if (currentObjectCount >= maxObjects) {
+      return;
+    }
+
+    currentObjectCount++;
+
+    const objectId = "box-" + currentObjectCount;
+    const $object = $('<div class="box" id="' + objectId + '"></div>');
+    $('.slide-container').append($object);
+
+    $object.draggable({
+      containment: ".slide-container",
+      stop: function(event, ui) {
+        const id = $(this).attr('id');
+        const top = ui.position.top;
+        const left = ui.position.left;
+        localStorage.setItem(id, top + ',' + left);
+      }
+    });
+
+    $object.click(function() {
+      $(this).toggleClass("open");
+      $(this).find('.delete-button').toggle();
+    });
+
+    const $deleteButton = $('<div class="delete-button">削除</div>');
+    $deleteButton.click(function(event) {
+      event.stopPropagation(); // クリックイベントの伝播を停止
+      const $parent = $(this).parent();
+      const id = $parent.attr('id');
+      localStorage.removeItem(id);
+      $parent.remove();
+      currentObjectCount--;
+    });
+
+    $object.append($deleteButton);
+
+    // 保存された位置を復元
+    let storedPosition = localStorage.getItem(objectId);
+    if (storedPosition) {
+      let positions = storedPosition.split(',');
+      $object.css({ top: positions[0] + 'px', left: positions[1] + 'px', position: 'absolute' });
+    }
+  }
+
+  $('#add-object-btn').on('click', function() {
+    createObject();
+  });
+
+  // ページ読み込み時に保存されたオブジェクトを表示
+  for (let i = 1; i <= currentObjectCount; i++) {
+    createObject();
+  }
+});
+  </script>
+</body>
+</html>
