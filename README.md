@@ -42,10 +42,7 @@
 | Column   | Type       | Options                        |
 | -------- | ---------- | ------------------------------ |
 | type_id  | integer    | null: false,                   |
-| shape_id | integer    | null: false,                   |
-| color_id | integer    | null: false,                   |
-| name_id  | integer    | null: false,                   |
-| area_id  | integer    | null: false,                   |
+| name     | string     | null: false,                   |
 | user     | references | null: false, foreign_key: true |
 
 ### Association

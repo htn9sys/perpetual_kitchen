@@ -1,47 +1,36 @@
 document.addEventListener("DOMContentLoaded", function() {
   const selectButton2 = document.getElementById("select-button2");
   const candidatesContainer2 = document.getElementById("candidates-container2");
-  const kitchenContainer = document.getElementById("kitchen-container");
-  const slideContainerStorage = document.getElementById("slide-container-storage");
-  let refrigeratorCount = 0;
 
   let candidates = [
-    { name: "冷蔵庫", path: "/javascript/refrigerator.js" },
-    { name: "大型冷蔵庫", path: "/javascript/large-refrigerator.js" },
-    { name: "棚", path: "/javascript/shelf.js" },
-    { name: "ダンボール", path: "/javascript/cardboard-box.js" }
+    { name: "冷蔵庫" },
+    { name: "大型冷蔵庫" },
+    { name: "棚" },
+    { name: "ダンボール" }
   ];
 
   selectButton2.addEventListener("click", function() {
     let candidatesHTML = "";
-    candidates.forEach(function(candidate) {
-      candidatesHTML += `<div class="candidate" data-path="${candidate.path}">${candidate.name}</div>`;
+    candidates.forEach(function(candidate, index) {
+      candidatesHTML += `
+        <div class="candidate">
+          <span>${candidate.name}</span>
+          <input type="text" class="name-input" placeholder="名前を入力" onchange="updateName(${index}, this.value)">
+          <button class="save-button" onclick="saveCandidate(${index})">保存</button>
+        </div>`;
     });
 
     candidatesContainer2.innerHTML = candidatesHTML;
     candidatesContainer2.style.display = "block";
   });
-
-  document.addEventListener("click", function(event) {
-    const target = event.target;
-    const isSelectButton2 = target === selectButton2;
-    const isCandidateElement2 = candidatesContainer2.contains(target);
-
-    if (!isSelectButton2 && !isCandidateElement2) {
-      candidatesContainer2.style.display = "none";
-    }
-  });
-
-  kitchenContainer.addEventListener("click", function(event) {
-    const target = event.target;
-    if (target.classList.contains("refrigerator")) {
-      if (refrigeratorCount < 5) {
-        refrigeratorCount++;
-        const newRefrigerator = document.createElement("div");
-        newRefrigerator.classList.add("refrigerator");
-        newRefrigerator.textContent = "冷蔵庫 " + refrigeratorCount;
-        slideContainerStorage.appendChild(newRefrigerator);
-      }
-    }
-  });
 });
+
+function updateName(index, value) {
+  candidates[index].name = value;
+}
+
+function saveCandidate(index) {
+  const candidate = candidates[index];
+  // ここで保存処理を行う（例: Ajaxリクエストを送信してサーバーにデータを保存するなど）
+  console.log(`保存された名前: ${candidate.name}`);
+}
