@@ -1,0 +1,14 @@
+<%= form_with model: @user, url: user_session_path, id: 'new_user', class: 'registration-main', local: true do |f| %>
+  <div class="first-wrap">
+    <div class="first-btn">
+      <%= link_to new_user_session_path, class: "first-top-btn" do %>
+        ログイン
+      <% end %>
+    </div>
+    <div class="first-btn">
+      <%= link_to new_user_registration_path, class: "first-bottom-btn" do %>
+        新規登録
+      <% end %>
+    </div>
+  </div>
+<% end %>

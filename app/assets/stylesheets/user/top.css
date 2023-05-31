@@ -1,0 +1,43 @@
+.first-wrap {
+  width: 500px;
+  max-height: 760px;
+  background-color: rgba(255, 255, 255, 0.5);
+  background-image: url("top.png");
+  background-size: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end; /* 下揃え */
+}
+
+.first-btn {
+  width: 100px;
+  margin-top: 10px;
+  margin-left: 200px;
+  text-shadow: 1px 1px 5px rgb(0, 0, 0);
+}
+
+.first-top-btn {
+  display: block;
+  color: #fff;
+  line-height: 40px;
+  font-size: 22px;
+  margin-bottom: 8px; /* 下からのマージンを追加 */
+}
+
+.first-bottom-btn {
+  display: block;
+  color: #fff;
+  line-height: 40px;
+  font-size: 22px;
+  margin-bottom: 255px; /* 下からのマージンを追加 */
+}
+
+.first-btn a {
+  text-decoration: none;
+}
+
+.first-top-btn a {
+  color: inherit;
+}
