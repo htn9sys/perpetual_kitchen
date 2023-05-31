@@ -193,7 +193,7 @@
   position: absolute;
   top: -145px;
   left: 23px;
-  width: 400px;
+  width: 60px;
   padding: 10px;
   background-color: #f9f9f93a;
   border: 1px solid #cccccc00;
@@ -205,7 +205,31 @@
   content: "";
   position: absolute;
   bottom: -10px;
-  left: 50%;
+  left: 30%;
+  transform: translateX(-50%);
+  border-style: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: #f9f9f9a8 transparent transparent transparent;
+}
+
+.candidates-container2 {
+  display: none;
+  position: absolute;
+  top: -190px;
+  left: 23px;
+  width: 350px;
+  padding: 10px;
+  background-color: #f9f9f93a;
+  border: 1px solid #cccccc00;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.candidates-container2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 10%;
   transform: translateX(-50%);
   border-style: solid;
   border-width: 10px 10px 0 10px;
@@ -214,17 +238,16 @@
 
 .candidate {
   display: flex;
-  align-items: center;
   padding: 5px 0;
 }
 
 .name-input {
   margin-right: 10px;
-  margin-left: 10px;
 }
 
 .save-button {
   margin-left: auto;
+  margin-right: 0;
 }
 
 

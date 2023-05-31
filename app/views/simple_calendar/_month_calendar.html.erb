@@ -1,0 +1,82 @@
+<div class="calendar-navigation">
+  <div class="calendar-navigation-link calendar-navigation-link-left">
+    <%= link_to raw('&lt;'), calendar.url_for_previous_view %>
+  </div>
+  <div class="calendar-navigation-link calendar-navigation-link-right">
+    <%= link_to raw('&gt;'), calendar.url_for_next_view %>
+  </div>
+</div>
+
+
+<div class="calendar">
+  <div class="calendar-heading">
+    <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></time>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <% date_range.slice(0, 7).each do |day| %>
+          <th><%= t('date.abbr_day_names')[day.wday] %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% date_range.each_slice(7) do |week| %>
+        <tr>
+          <% week.each do |day| %>
+            <% if day.month != start_date.month %>
+              <% td_class = "#{calendar.td_classes_for(day)} other-month" %>
+            <% else %>
+              <% td_class = calendar.td_classes_for(day) %>
+            <% end %>
+            <%= content_tag :td, class: td_class do %>
+              <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
+                <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
+              <% else %>
+                <% passed_block.call day, sorted_events.fetch(day, []) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+  <div class="calendar-form">
+    <%= form_for :event do |f| %>
+      <div class="calendar-form-group">
+        <%= f.label :title, "タイトル" %>
+        <%= f.text_field :title, class: "form-control"%>
+      </div>
+
+      <div class="calendar-form-group">
+        <%= f.label :description, "説明" %>
+        <%= f.text_field :description, class: "form-control" %>
+      </div>
+
+      <div class="calendar-form-group">
+        <%= f.label :start_date, "いつから" %>
+        <%= f.date_select :start_date, class: "form-control" %>
+      </div>
+
+      <div class="calendar-form-group">
+        <%= f.label :end_date, "いつまで" %>
+        <%= f.date_select :end_date, class: "form-control" %>
+      </div>
+
+      <div class="calendar-form-group">
+        <%= f.label :location, "場所" %>
+        <%= f.text_field :location, class: "form-control" %>
+      </div>
+
+      <div class="calendar-form-group form-button-group">
+        <%#= f.label :color_id, "色" %>
+        <%#= f.select :color_id, options_for_select(Color.all.map { |c| [c.name, c.id] }), {}, class: "form-control" %>
+        <%= f.submit "登録", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

@@ -1,25 +1,31 @@
 .calendar {
-  width: 440px;
-  height: 500px;
+  width: 420px;
+  height: 460px;
   margin: 20px auto;
   border-radius: 5px;
-  box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.253), 1px 3px 10px rgba(0, 0, 0, 0.329);
+  box-shadow: 1px 3px 3px rgba(63, 63, 63, 0.103), 1px 3px 3px rgba(48, 201, 48, 0.329);
 }
 
-.header {
-  background-color: #f2f2f200;
+.calendar-heading {
   padding: 10px;
   text-align: center;
 }
 
 table {
   width: 100%;
-  height: 85%;
+  height: 415px;
 }
 
 th, td {
-  text-align: center;
   padding: 5px;
+}
+
+td {
+  background: linear-gradient(180deg, #f0f0f054, #d6d6d64f);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 4px;
+  vertical-align: top;
+  text-align: left;
 }
 
 th {
@@ -30,23 +36,85 @@ th {
   color: #ccc;
 }
 
-.calendar-control {
+.calendar-navigation {
   position: absolute;
-  top: 50%;
+  top: 40%;
   transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+}
+
+.calendar-navigation-link {
+  display: inline-block;
   height: 50px;
   width: 50px;
   font-size: 24px;
   line-height: 50px;
-  text-align: center;
   background-color: #f2f2f23f;
   cursor: pointer;
+  color: #ffffff;
+  text-shadow: 1px 1px 3px rgb(0, 0, 0);
 }
 
-.left {
-  left: 0;
+.calendar-navigation-link-left {
+  float: left;
 }
 
-.right {
-  right: 0;
+.calendar-navigation-link-right {
+  float: right;
+}
+
+.calendar-navigation-link a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
+.calendar-navigation-link a:hover,
+.calendar-navigation-link a:focus {
+  color: inherit;
+  text-decoration: none;
+}
+
+.calendar-form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.calendar-form-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 4px;
+  padding-right: 20px;
+}
+
+.calendar-form label {
+  width: 90px; /* ラベルの幅を調整 */
+  text-align: right;
+  margin-right: 10px;
+}
+
+.calendar-form input[type="text"],
+.calendar-form select,
+.calendar-form textarea {
+  height: 20px;
+  flex: 1;
+  background: linear-gradient(180deg, #f0f0f0ad, #d3eb8f71);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.16), 0 1px 1px rgba(0, 0, 0, 0.23);
+  border-radius: 2px;
+  border: none;
+}
+
+.submit-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5px; /* 上側のマージンを狭くする */
+  margin-bottom: 5px; /* 下側のマージンを狭くする */
+  padding: 0; /* パディングを0にする */
+}
+
+.submit-button input[type="submit"] {
+  margin-left: auto; /* ボタンを右寄せにする */
 }

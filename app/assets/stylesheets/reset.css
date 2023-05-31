@@ -73,8 +73,7 @@ ul {
   list-style:none;
 }
 
-caption,
-th {
+caption {
   text-align:left;
 }
 h1,
