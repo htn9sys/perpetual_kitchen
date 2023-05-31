@@ -55,11 +55,11 @@
 | Column      | Type       | Options                        |
 | ----------- | ---------- | ------------------------------ |
 | title       | string     | null: false,                   |
-| description | string     | null: false,                   |
+| description | string     |                                |
 | start_date  | date       | null: false,                   |
 | end_date    | date       | null: false,                   |
 | location    | string     |                                |
-| color_id    | integer    | null: false,                   |
+| color_id    | integer    |                                |
 | user        | references | null: false, foreign_key: true |
 
 ### Association
