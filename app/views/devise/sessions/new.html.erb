@@ -1,5 +1,6 @@
 <%= form_with model: @user, url: user_session_path, id: 'new_user', class: 'registration-main', local: true do |f| %>
 <div class='form-wrap2'>
+<%= render 'shared/loading' %>
   <div class='form-header'>
     <h1 class='form-header-text'>
       ログイン

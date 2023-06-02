@@ -1,5 +1,7 @@
 <%= form_with model: @user, url: user_session_path, id: 'new_user', class: 'registration-main', local: true do |f| %>
   <div class="first-wrap">
+  <%= render 'shared/loading' %>
+  <div class="overlay"></div> <!-- オーバーレイ要素 -->
     <div class="first-btn">
       <%= link_to new_user_session_path, class: "first-top-btn" do %>
         ログイン
