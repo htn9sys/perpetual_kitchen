@@ -21,7 +21,7 @@
         <% end %>
       </tr>
     </thead>
-
+    
     <tbody>
       <% date_range.each_slice(7) do |week| %>
         <tr>
@@ -32,10 +32,21 @@
               <% td_class = calendar.td_classes_for(day) %>
             <% end %>
             <%= content_tag :td, class: td_class do %>
-              <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
-                <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
-              <% else %>
-                <% passed_block.call day, sorted_events.fetch(day, []) %>
+              <div class="day"><%= day.day %></div>
+              <% start_datetime = day.beginning_of_day %>
+              <% end_datetime = day.end_of_day %>
+              <% calendar_events = Calendar.where("start_date <= ? AND end_date >= ?", end_datetime, start_datetime) %>
+              <% calendar_events.each do |event| %>
+                <% color = Color.find_by(id: event.color_id) %>
+                <% event_start_date = event.start_date.to_date %>
+                <% event_end_date = event.end_date.to_date %>
+                <% if day >= event_start_date && day <= event_end_date %>
+                  <% if day == event_start_date %>
+                    <div class="event-title color-<%= event.color_id %> event-start" data-event-id="<%= event.id %>"><%= event.title %></div>
+                  <% else %>
+                    <div class="event-title color-<%= event.color_id %> event-extend"></div>
+                  <% end %>
+                <% end %>
               <% end %>
             <% end %>
           <% end %>
@@ -43,8 +54,10 @@
       <% end %>
     </tbody>
 
+
   </table>
   <div class="calendar-form">
+    <div id="event-detail" class="event-detail"></div>
     <%= form_for :event do |f| %>
       <div class="calendar-form-group">
         <%= f.label :title, "タイトル" %>
@@ -72,8 +85,8 @@
       </div>
 
       <div class="calendar-form-group form-button-group">
-        <%#= f.label :color_id, "色" %>
-        <%#= f.select :color_id, options_for_select(Color.all.map { |c| [c.name, c.id] }), {}, class: "form-control" %>
+        <%= f.label :color_id, "色" %>
+        <%= f.select :color_id, options_for_select(Color.all.map { |c| [c.name, c.id] }), {}, class: "form-control" %>
         <%= f.submit "登録", class: "btn btn-primary" %>
       </div>
     <% end %>

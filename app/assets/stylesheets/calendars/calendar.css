@@ -3,7 +3,8 @@
   height: 460px;
   margin: 20px auto;
   border-radius: 5px;
-  box-shadow: 1px 3px 3px rgba(63, 63, 63, 0.103), 1px 3px 3px rgba(48, 201, 48, 0.329);
+  box-shadow: 1px 3px 3px rgba(63, 63, 63, 0.103), 1px 3px 3px rgba(137, 150, 137, 0.329);
+  text-shadow: 2px 2px 3px rgb(255, 255, 255);
 }
 
 .calendar-heading {
@@ -26,15 +27,78 @@ td {
   border-radius: 4px;
   vertical-align: top;
   text-align: left;
-}
-
-th {
-  font-weight: bold;
+  height: 66.5px;
+  width: 62.59px;
 }
 
 .other-month {
   color: #ccc;
 }
+
+.event-title {
+  display: inline-block;
+  border-radius: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 62.59px; /* カレンダーの1日の幅 */
+}
+
+.event-title-extend {
+  display: inline-block;
+  width: 100%;
+  height: 20px; /* カラーの高さ（初期値） */
+}
+
+.event-title-extend.active {
+  height: calc(100% - 20px); /* カラーの高さをスタートデートに合わせて調整 */
+}
+
+/*color_id*/
+
+.color-1 {
+  background-color: #ffffff00;
+  color: rgb(0, 0, 0);
+  text-shadow: 1px 1px 3px rgb(255, 255, 255);
+  font-weight: 400;
+}
+
+.color-2 {
+  background: linear-gradient(180deg, #f5c1c1ad, #ff000041);
+  color: rgb(0, 0, 0);
+  text-shadow: 1px 1px 3px rgb(255, 255, 255);
+  font-weight: 400;
+}
+
+.color-3 {
+  background: linear-gradient(180deg, #dfe0f1ad, #0a37ff34);
+  color: rgb(0, 0, 0);
+  text-shadow: 1px 1px 3px rgb(255, 255, 255);
+  font-weight: 400;
+}
+
+.color-4 {
+  background: linear-gradient(180deg, #d0f1d0ad, #1eff002a);
+  color: rgb(0, 0, 0);
+  text-shadow: 1px 1px 3px rgb(255, 255, 255);
+  font-weight: 400;
+}
+
+.color-5 {
+  background: linear-gradient(180deg, #fcf2c5a2, #fbff004d);
+  color: rgb(0, 0, 0);
+  text-shadow: 1px 1px 3px rgb(255, 255, 255);
+  font-weight: 400;
+}
+
+.color-6 {
+  background: linear-gradient(180deg, #fdc4faad, #ff00aa3f);
+  color: rgb(0, 0, 0);
+  text-shadow: 1px 1px 3px rgb(255, 255, 255);
+  font-weight: 400;
+}
+
+/*color_id*/
 
 .calendar-navigation {
   position: absolute;
@@ -80,6 +144,7 @@ th {
   display: flex;
   flex-direction: column;
   padding-top: 10px;
+  position: relative;
 }
 
 .calendar-form-group {
@@ -88,6 +153,50 @@ th {
   justify-content: flex-start;
   margin-top: 4px;
   padding-right: 20px;
+}
+
+#event-detail {
+  margin-top: 10px;
+  position: absolute !important;
+  top: 0 !important;
+  left: 10px !important;
+  width: 75%; 
+  background: linear-gradient(180deg, #ffffffe7, #a3b39a);
+  padding-left: 20px;
+  padding-right: 60px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.input-container p {
+  display: flex;
+  text-align: right;
+  width: 100px; /* タイトルの幅を固定 */
+  justify-content: flex-end; /* 右揃え */
+  margin-right: 10px;
+}
+
+.input-container p::after {
+  content: ":";
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.input-container input[type="date"],
+.input-container input[type="text"],
+.input-container select {
+  flex-grow: 1;
+}
+
+.calendar-button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-right: -30px;
+  border: none;
 }
 
 .calendar-form label {
@@ -101,10 +210,11 @@ th {
 .calendar-form textarea {
   height: 20px;
   flex: 1;
-  background: linear-gradient(180deg, #f0f0f0ad, #d3eb8f71);
+  background: linear-gradient(180deg, #f0f0f0d3, #e6ecd271);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.16), 0 1px 1px rgba(0, 0, 0, 0.23);
   border-radius: 2px;
   border: none;
+  text-shadow: 2px 2px 3px rgb(255, 255, 255);
 }
 
 .submit-button {

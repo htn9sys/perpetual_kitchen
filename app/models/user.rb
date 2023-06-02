@@ -34,4 +34,6 @@ class User < ApplicationRecord
   def password_blank?
     password.blank?
   end
+
+  has_many :calendars
 end
