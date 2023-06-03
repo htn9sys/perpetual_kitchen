@@ -7,7 +7,6 @@
   </div>
 </div>
 
-
 <div class="calendar">
   <div class="calendar-heading">
     <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></time>
@@ -31,20 +30,26 @@
             <% else %>
               <% td_class = calendar.td_classes_for(day) %>
             <% end %>
+            <% start_datetime = day.beginning_of_day %>
+            <% end_datetime = day.end_of_day %>
+            <% calendar_events = Calendar.where("start_date <= ? AND end_date >= ?", end_datetime, start_datetime) %>
             <%= content_tag :td, class: td_class do %>
-              <div class="day"><%= day.day %></div>
-              <% start_datetime = day.beginning_of_day %>
-              <% end_datetime = day.end_of_day %>
-              <% calendar_events = Calendar.where("start_date <= ? AND end_date >= ?", end_datetime, start_datetime) %>
+              <div class="day" data-event-id="<%= calendar_events.map(&:id).join(' ') %>"><%= day.day %></div>
               <% calendar_events.each do |event| %>
                 <% color = Color.find_by(id: event.color_id) %>
                 <% event_start_date = event.start_date.to_date %>
                 <% event_end_date = event.end_date.to_date %>
                 <% if day >= event_start_date && day <= event_end_date %>
                   <% if day == event_start_date %>
-                    <div class="event-title color-<%= event.color_id %> event-start" data-event-id="<%= event.id %>"><%= event.title %></div>
+                    <div class="event-title color-<%= event.color_id %> event-start" data-event-id="<%= event.id %>">
+                      <%= event.title %>
+                    </div>
+                  <% elsif day == event_end_date %>
+                    <div class="event-title color-<%= event.color_id %> event-end" data-event-id="<%= event.id %>">
+                      <%= event.title %>
+                    </div>
                   <% else %>
-                    <div class="event-title color-<%= event.color_id %> event-extend"></div>
+                    <div class="event-title-extend color-<%= event.color_id %>"></div>
                   <% end %>
                 <% end %>
               <% end %>
@@ -53,9 +58,8 @@
         </tr>
       <% end %>
     </tbody>
-
-
   </table>
+
   <div class="calendar-form">
     <div id="event-detail" class="event-detail"></div>
     <%= form_for :event do |f| %>
@@ -91,5 +95,4 @@
       </div>
     <% end %>
   </div>
-
 </div>
