@@ -1,7 +1,7 @@
 .calendar {
   width: 420px;
   height: 460px;
-  margin: 20px auto;
+  margin: 0 40px;
   border-radius: 5px;
   box-shadow: 1px 3px 3px rgba(63, 63, 63, 0.103), 1px 3px 3px rgba(137, 150, 137, 0.329);
   text-shadow: 2px 2px 3px rgb(255, 255, 255);
@@ -44,7 +44,7 @@ td {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 20px;
+  height: 16px;
   width: 60px;
 }
 
@@ -52,7 +52,7 @@ td {
   position: relative;
   display: inline-block;
   width: 60px;
-  height: 20px;
+  height: 16px;
 }
 
 .event-title-extend.active {
@@ -166,9 +166,10 @@ td {
   top: 0 !important;
   left: 10px !important;
   width: 75%; 
-  background: linear-gradient(180deg, #ffffffe7, #a8ada6);
+  background: linear-gradient(180deg, #fcfce5e7, #fdfbef);
   padding-left: 20px;
   padding-right: 60px;
+  border-radius: 5px;
 }
 
 .input-container {

@@ -6,88 +6,65 @@
     
     <div class="kitchen-container">
       <div class="slide-container">
-        <div class="slide slide-1">Kitchen</div>
-        <div class="slide slide-2">Kitchen 2</div>
-        <div class="slide slide-3">Kitchen 3</div>
-        <div class="slide slide-4">Kitchen 4</div>
+        <div class="slide slide-1">キッチン</div>
+        <div class="slide slide-2">キッチン 2</div>
+        <div class="slide slide-3">キッチン 3</div>
+        <div class="slide slide-4">キッチン 4</div>
+        <% @kitchens.each do |kitchen| %>
+          <!-- 冷蔵庫 -->
+          <% if kitchen.type_id == 2 %>
+            <div id="refrigerator_<%= kitchen.id %>" class="draggable refrigerator" data-type="<%= kitchen.type_id %>">
+              <%= render 'shared/refrigerator', type_id: kitchen.type_id %>
+            </div>
+          <% end %>
+          <!-- 冷蔵庫 -->
 
-        <!-- 棚 -->
-        <%= render 'shared/shelf' %>
-        <script>
-          $(".shelf").draggable({
+          <!-- 大型冷蔵庫 -->
+          <% if kitchen.type_id == 3 %>
+            <div id="refrigerator_large_<%= kitchen.id %>" class="draggable refrigerator_large" data-type="<%= kitchen.type_id %>">
+              <%= render 'shared/refrigerator_large', type_id: kitchen.type_id %>
+            </div>
+          <% end %>
+          <!-- 大型冷蔵庫 -->
+
+          <!-- 棚 -->
+          <% if kitchen.type_id == 4 %>
+            <div id="shelf_<%= kitchen.id %>" class="draggable shelf" data-type="<%= kitchen.type_id %>">
+              <%= render 'shared/shelf', type_id: kitchen.type_id %>
+            </div>
+          <% end %>
+          <!-- 棚 -->
+
+          <!-- 箱 -->
+          <% if kitchen.type_id == 5 %>
+            <div id="box_<%= kitchen.id %>" class="draggable box" data-type="<%= kitchen.type_id %>">
+              <%= render 'shared/box', type_id: kitchen.type_id %>
+            </div>
+          <% end %>
+          <!-- 箱 -->
+          <script>
+          $(function() {
+          $(".draggable").draggable({
             containment: ".slide-container",
-            start: function(event, ui) {
-              ui.helper.css('z-index', '3');
-            },
             stop: function(event, ui) {
               const id = $(this).attr('id');
               const top = ui.position.top;
               const left = ui.position.left;
-              localStorage.setItem(id + "_top", top);
-              localStorage.setItem(id + "_left", left);
-              $(this).css('z-index', '');
+              localStorage.setItem(id + "_position", JSON.stringify({ top: top, left: left }));
             }
           });
 
-          $(".shelf").each(function() {
+          $(".draggable").each(function() {
             const id = $(this).attr('id');
-            const top = localStorage.getItem(id + "_top");
-            const left = localStorage.getItem(id + "_left");
-            if (top && left) {
-              $(this).css({ top: top + 'px', left: left + 'px', position: 'absolute' });
-            }
-          });
-        </script>
-        <!-- 棚 -->
-        
-        <!-- 冷蔵庫 -->
-        <%= render 'shared/refrigerator' %>
-        <script>
-        $(function() {
-          $(".refrigerator").draggable({
-            containment: ".slide-container",
-            stop: function(event, ui) {
-              localStorage.setItem(this.id + "_kitchen", ui.position.top + ',' + ui.position.left);
-            }
-          });
-
-          $(".refrigerator").each(function() {
-            let storedPosition = localStorage.getItem(this.id + "_kitchen");
+            const storedPosition = localStorage.getItem(id + "_position");
             if (storedPosition) {
-              let positions = storedPosition.split(',');
-              $(this).css({ top: positions[0] + 'px', left: positions[1] + 'px' });
+              const position = JSON.parse(storedPosition);
+              $(this).css({ top: position.top + 'px', left: position.left + 'px', position: 'absolute' });
             }
           });
         });
         </script>
-        <!-- 冷蔵庫 -->
-
-        <!-- 冷蔵庫 2 -->
-        <%= render 'shared/refrigerator_large' %>
-        <script>
-          $(function() {
-            $(".refrigerator_large").draggable({
-              containment: ".slide-container",
-              stop: function(event, ui) {
-                localStorage.setItem(this.id + "_kitchen_large", ui.position.top + ',' + ui.position.left);
-              }
-            });
-
-            $(".refrigerator_large").each(function() {
-              let storedPosition = localStorage.getItem(this.id + "_kitchen_large");
-              if (storedPosition) {
-                let positions = storedPosition.split(',');
-                $(this).css({ top: positions[0] + 'px', left: positions[1] + 'px' });
-              }
-            });
-          });
-          </script>
-        <!-- 冷蔵庫 2 -->
-
-        <!-- 箱 -->
-        <%= render 'shared/box' %>
-        <!-- 箱 -->
-
+        <% end %>
         
       </div>
       <div class="slide-container bottom"></div>

@@ -83,7 +83,7 @@ $(document).ready(function() {
 
         clickedTitle.addClass('active');
       },
-      error: function(xhr, status, error) {
+      error: function(error) {
         console.error(error);
       }
     });
@@ -121,7 +121,7 @@ $(document).ready(function() {
         detailElement.hide();
         $('.event-title.active').removeClass('active');
       },
-      error: function(xhr, status, error) {
+      error: function(error) {
         console.error(error);
       }
     });
@@ -141,7 +141,7 @@ $(document).ready(function() {
         detailElement.hide();
         $('.event-title.active').removeClass('active');
       },
-      error: function(xhr, status, error) {
+      error: function(error) {
         console.error(error);
       }
     });

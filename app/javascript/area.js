@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
   selectButton.addEventListener("click", function() {
     const candidates = [
-      { name: "庭", path: "/gardens" },
       { name: "キッチン", path: "/kitchens" },
       { name: "廊下", path: "/corridors" },
+      { name: "庭", path: "/gardens" },
       { name: "倉庫", path: "/storages" }
     ];
 

@@ -1,6 +1,6 @@
 /* 冷蔵庫 */
 
-.refrigerator {
+.draggable.refrigerator {
   position: absolute;
   width: 120px;
   height: 240px;
@@ -16,7 +16,7 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.door {
+.refrigerator > .door {
   width: 120px;
   height: 240px;
   background: linear-gradient(180deg, #ffffff, #f1f0f0fd);
@@ -26,12 +26,12 @@
   transform-origin: left;
   border-radius: 2px;
   border: none;
-  z-index: 2;  /* Updated: Changed z-index from 1 to 2 */
+  z-index: 2;
   margin-top: -10px;
   margin-left: -10px;
 }
 
-.door-handle {
+.refrigerator > .door > .door-handle {
   width: 10px;
   height: 50px;
   background-color: #d4cccc;
@@ -54,9 +54,9 @@
 
 /* 冷蔵庫 */
 
-/* 冷蔵庫 2 */
+/* 大型冷蔵庫 */
 
-.refrigerator_large {
+.draggable.refrigerator_large {
   position: absolute;
   width: 180px;
   height: 350px;
@@ -80,7 +80,6 @@
   left: -10px;
   width: 89px;
   height: 50%;
-  background-color: #ffee03;
   transition: transform 0.5s;
   transform-origin: left;
 }
@@ -93,7 +92,6 @@
   right: -10px;
   width: 89px;
   height: 50%;
-  background-color: #0307ff;
   transition: transform 0.5s;
   transform-origin: right;
 }
@@ -107,7 +105,7 @@
 }
 
 .large_bottom {
-  position: relative;
+  position: absolute;
   top: 50%;
   width: 100%;
   height: 50%;
@@ -119,7 +117,6 @@
   left: -10px;
   width: 89px;
   height: 34%;
-  background-color: #00ff6a;
 }
 
 .ice-right {
@@ -128,7 +125,6 @@
   right: -10px;
   width: 89px;
   height: 34%;
-  background-color: #ff00dd;
 }
 
 .vegetable-compartment {
@@ -136,7 +132,6 @@
   left: -10px;
   width: 180px;
   height: 34%;
-  background-color: #8400ff;
   top: 49.5px;
 }
 
@@ -146,7 +141,6 @@
   bottom: -10px;
   width: 180px;
   height: 41%;
-  background-color: #ffc400;
 }
 
 .door-left,
@@ -167,11 +161,11 @@
 }
 
 
-/* 冷蔵庫 2 */
+/* 大型冷蔵庫 */
 
 /* 棚 */
 
-.shelf {
+.draggable.shelf {
   position: absolute;
   width: 200px;
   height: 150px;
