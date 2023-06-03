@@ -31,7 +31,7 @@ class CalendarsController < ApplicationController
   end
   
   def create
-    @calendar = Calendar.new(calendar_params)
+    @calendar = Calendar.new(event_params)
     @calendar.user_id = current_user.id
     
     if @calendar.save
@@ -45,5 +45,9 @@ class CalendarsController < ApplicationController
   
   def calendar_params
     params.require(:calendar).permit(:title, :description, :start_date, :end_date, :location, :color_id)
+  end
+
+  def event_params
+    params.require(:event).permit(:title, :description, :start_date, :end_date, :location, :color_id)
   end
 end
