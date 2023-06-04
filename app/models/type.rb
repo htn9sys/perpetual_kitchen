@@ -9,4 +9,5 @@ class Type < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :kitchens
+  has_many :kitchen_items
 end

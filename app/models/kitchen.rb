@@ -6,4 +6,5 @@ class Kitchen < ApplicationRecord
 
   belongs_to :user
   belongs_to :type
+  has_many :kitchen_items
 end

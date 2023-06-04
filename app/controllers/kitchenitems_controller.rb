@@ -1,0 +1,2 @@
+class KitchenItemsController < ApplicationController
+end

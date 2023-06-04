@@ -21,7 +21,7 @@
 
           <!-- 大型冷蔵庫 -->
           <% if kitchen.type_id == 3 %>
-            <div id="refrigerator_large_<%= kitchen.id %>" class="draggable refrigerator_large" data-type="<%= kitchen.type_id %>">
+            <div id="refrigeratorlarge_<%= kitchen.id %>" class="draggable refrigerator_large" data-type="<%= kitchen.type_id %>">
               <%= render 'shared/refrigerator_large', type_id: kitchen.type_id %>
             </div>
           <% end %>
@@ -42,30 +42,37 @@
             </div>
           <% end %>
           <!-- 箱 -->
-          <script>
-          $(function() {
-          $(".draggable").draggable({
-            containment: ".slide-container",
-            stop: function(event, ui) {
-              const id = $(this).attr('id');
-              const top = ui.position.top;
-              const left = ui.position.left;
-              localStorage.setItem(id + "_position", JSON.stringify({ top: top, left: left }));
-            }
-          });
-
-          $(".draggable").each(function() {
-            const id = $(this).attr('id');
-            const storedPosition = localStorage.getItem(id + "_position");
-            if (storedPosition) {
-              const position = JSON.parse(storedPosition);
-              $(this).css({ top: position.top + 'px', left: position.left + 'px', position: 'absolute' });
-            }
-          });
-        });
-        </script>
         <% end %>
-        
+
+        <script>
+          $(function() {
+            $(".draggable").draggable({
+              containment: ".slide-container",
+              stop: function(event, ui) {
+                const id = $(this).attr('id');
+                const top = ui.position.top;
+                const left = ui.position.left;
+                localStorage.setItem(id + "_position", JSON.stringify({ top: top, left: left }));
+              }
+            });
+
+            $(".draggable").each(function() {
+              const id = $(this).attr('id');
+              const storedPosition = localStorage.getItem(id + "_position");
+              if (storedPosition) {
+                const position = JSON.parse(storedPosition);
+                $(this).css({ top: position.top + 'px', left: position.left + 'px', position: 'absolute' });
+              }
+            });
+
+            // クリックイベントの追加
+            $("[id^='refrigerator_'], [id^='refrigeratorlarge_'], [id^='shelf_'], [id^='box_']").on('click', function() {
+              const kitchenId = $(this).attr('id').split('_')[1];
+              window.location.href = "/kitchens/" + kitchenId; // 詳細画面へのリンク
+            });
+          });
+        </script>
+
       </div>
       <div class="slide-container bottom"></div>
       <div class="slide-control left">&lt;</div>

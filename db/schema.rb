@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_30_153334) do
+ActiveRecord::Schema.define(version: 2023_06_04_041142) do
 
   create_table "calendars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
@@ -23,6 +23,22 @@ ActiveRecord::Schema.define(version: 2023_05_30_153334) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_calendars_on_user_id"
+  end
+
+  create_table "kitchen_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "type_id", null: false
+    t.integer "quantity", null: false
+    t.integer "unit_id", null: false
+    t.integer "date_type_id", null: false
+    t.date "date", null: false
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.bigint "kitchen_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["kitchen_id"], name: "index_kitchen_items_on_kitchen_id"
+    t.index ["user_id"], name: "index_kitchen_items_on_user_id"
   end
 
   create_table "kitchens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|

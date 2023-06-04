@@ -31,6 +31,7 @@ $(function() {
 
   $(".left-door").on('click', function(event) {
     event.stopPropagation();
+    toggleDoor();
   });
 
   $(".shelf").on('click', function() {
@@ -38,7 +39,6 @@ $(function() {
       closeDoor();
     }
   });
-
 
   $(function() {
     let maxZIndex = 1; // 最大のz-indexの初期値

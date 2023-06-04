@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root to: "items#index"
   resources :tops, only: [:index]
   resources :items
-  resources :kitchens
+  resources :kitchens do
+    resources :kitchen_items, only: [:show]
+  end
   resources :gardens
   resources :storages
   resources :corridors

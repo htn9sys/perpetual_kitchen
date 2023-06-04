@@ -22,14 +22,12 @@
 | name         | string     | null: false,                   |
 | type_id      | integer    | null: false,                   |
 | list_id      | integer    | null: false,                   |
-| quanity      | integer    | null: false,                   |
+| quantity     | integer    | null: false,                   |
 | unit_id      | integer    | null: false,                   |
 | date_type_id | integer    | null: false,                   |
 | date         | integer    | null: false,                   |
-| notice_id    | integer    | null: false,                   |
 | user         | references | null: false, foreign_key: true |
 | area         | references | null: false, foreign_key: true |
-| calendar     | references | null: false, foreign_key: true |
 
 ### Association
 
