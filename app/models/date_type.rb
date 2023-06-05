@@ -1,4 +1,4 @@
-class Type < ActiveHash::Base
+class DateType < ActiveHash::Base
   self.data = [
     { id: 1, name: '---' },
     { id: 2, name: '賞味期限' },
@@ -7,5 +7,5 @@ class Type < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-  has_many :kitchen_items
+  has_many :items
 end

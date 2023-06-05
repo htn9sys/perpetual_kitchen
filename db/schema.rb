@@ -25,9 +25,8 @@ ActiveRecord::Schema.define(version: 2023_06_04_041142) do
     t.index ["user_id"], name: "index_calendars_on_user_id"
   end
 
-  create_table "kitchen_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "type_id", null: false
     t.integer "quantity", null: false
     t.integer "unit_id", null: false
     t.integer "date_type_id", null: false
@@ -37,12 +36,12 @@ ActiveRecord::Schema.define(version: 2023_06_04_041142) do
     t.bigint "kitchen_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["kitchen_id"], name: "index_kitchen_items_on_kitchen_id"
-    t.index ["user_id"], name: "index_kitchen_items_on_user_id"
+    t.index ["kitchen_id"], name: "index_items_on_kitchen_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "kitchens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "type_id", null: false
+    t.integer "kitchen_type_id", null: false
     t.string "name", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false

@@ -19,13 +19,25 @@ class KitchensController < ApplicationController
     end
   end
 
-  def show
+  def update
     @kitchen = Kitchen.find(params[:id])
+    if @kitchen.update(kitchen_params)
+      redirect_to kitchen_items_path(@kitchen), notice: 'キッチンが更新されました。'
+    else
+      flash[:alert] = 'キッチンの更新に失敗しました。'
+      redirect_to kitchen_items_path(@kitchen)
+    end
+  end
+
+  def destroy
+    @kitchen = Kitchen.find(params[:id])
+    @kitchen.destroy
+    redirect_to kitchens_url, notice: "キッチンと関連するアイテムが削除されました。"
   end
 
   private
 
   def kitchen_params
-    params.require(:kitchen).permit(:type_id, :name)
+    params.require(:kitchen).permit(:kitchen_type_id, :name)
   end
 end

@@ -11,37 +11,23 @@
         <div class="slide slide-3">キッチン 3</div>
         <div class="slide slide-4">キッチン 4</div>
         <% @kitchens.each do |kitchen| %>
-          <!-- 冷蔵庫 -->
-          <% if kitchen.type_id == 2 %>
-            <div id="refrigerator_<%= kitchen.id %>" class="draggable refrigerator" data-type="<%= kitchen.type_id %>">
-              <%= render 'shared/refrigerator', type_id: kitchen.type_id %>
+          <% if kitchen.kitchen_type_id == 2 %>
+            <div id="refrigerator_<%= kitchen.id %>" class="draggable refrigerator" data-type="<%= kitchen.kitchen_type_id %>">
+              <%= render 'shared/refrigerator', type_id: kitchen.kitchen_type_id %>
+            </div>
+          <% elsif kitchen.kitchen_type_id == 3 %>
+            <div id="refrigeratorlarge_<%= kitchen.id %>" class="draggable refrigerator_large" data-type="<%= kitchen.kitchen_type_id %>">
+              <%= render 'shared/refrigerator_large', type_id: kitchen.kitchen_type_id %>
+            </div>
+          <% elsif kitchen.kitchen_type_id == 4 %>
+            <div id="shelf_<%= kitchen.id %>" class="draggable shelf" data-type="<%= kitchen.kitchen_type_id %>">
+              <%= render 'shared/shelf', type_id: kitchen.kitchen_type_id %>
+            </div>
+          <% elsif kitchen.kitchen_type_id == 5 %>
+            <div id="box_<%= kitchen.id %>" class="draggable box" data-type="<%= kitchen.kitchen_type_id %>">
+              <%= render 'shared/box', type_id: kitchen.kitchen_type_id %>
             </div>
           <% end %>
-          <!-- 冷蔵庫 -->
-
-          <!-- 大型冷蔵庫 -->
-          <% if kitchen.type_id == 3 %>
-            <div id="refrigeratorlarge_<%= kitchen.id %>" class="draggable refrigerator_large" data-type="<%= kitchen.type_id %>">
-              <%= render 'shared/refrigerator_large', type_id: kitchen.type_id %>
-            </div>
-          <% end %>
-          <!-- 大型冷蔵庫 -->
-
-          <!-- 棚 -->
-          <% if kitchen.type_id == 4 %>
-            <div id="shelf_<%= kitchen.id %>" class="draggable shelf" data-type="<%= kitchen.type_id %>">
-              <%= render 'shared/shelf', type_id: kitchen.type_id %>
-            </div>
-          <% end %>
-          <!-- 棚 -->
-
-          <!-- 箱 -->
-          <% if kitchen.type_id == 5 %>
-            <div id="box_<%= kitchen.id %>" class="draggable box" data-type="<%= kitchen.type_id %>">
-              <%= render 'shared/box', type_id: kitchen.type_id %>
-            </div>
-          <% end %>
-          <!-- 箱 -->
         <% end %>
 
         <script>
@@ -68,10 +54,11 @@
             // クリックイベントの追加
             $("[id^='refrigerator_'], [id^='refrigeratorlarge_'], [id^='shelf_'], [id^='box_']").on('click', function() {
               const kitchenId = $(this).attr('id').split('_')[1];
-              window.location.href = "/kitchens/" + kitchenId; // 詳細画面へのリンク
+              window.location.href = "/kitchens/" + kitchenId + "/items"; // itemのindexページへのリンク
             });
           });
         </script>
+
 
       </div>
       <div class="slide-container bottom"></div>

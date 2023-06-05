@@ -1,4 +1,4 @@
-class Type < ActiveHash::Base
+class Unit < ActiveHash::Base
   self.data = [
     { id: 1, name: '---' },
     { id: 2, name: '個' },
@@ -8,9 +8,8 @@ class Type < ActiveHash::Base
     { id: 6, name: '袋' },
     { id: 7, name: '箱' },
     { id: 8, name: '缶' },
-    { id: 9, name: 'ℓ' }
   ]
 
   include ActiveHash::Associations
-  has_many :kitchen_items
+  has_many :items
 end

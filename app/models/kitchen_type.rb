@@ -1,4 +1,4 @@
-class Type < ActiveHash::Base
+class KitchenType < ActiveHash::Base
   self.data = [
     { id: 1, name: '---' },
     { id: 2, name: '大型冷蔵庫' },
@@ -9,5 +9,5 @@ class Type < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :kitchens
-  has_many :kitchen_items
+  has_many :items
 end

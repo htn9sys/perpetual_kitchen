@@ -1,48 +1,111 @@
-#preview {
-  display: flex;
-  flex-wrap: wrap;
-  width: 450px;
-  height: 620px;
-  justify-content: space-between;
-  margin: 50px 0 0 50px;
+.kitchen-container_item {
+  height: 650px;
+  overflow-y: hidden;
 }
 
-#preview-kitchen,
-#preview-corridor,
-#preview-garden,
-#preview-storage {
-  border-radius: 10px;
-  width: 50%;
-  height: 50%;
-  transform: scale(0.8);
-  transform-origin: top left;
-  overflow: hidden;
-  box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.253), 1px 3px 10px rgba(0, 0, 0, 0.329);
+.kitchen-container_item h2 {
+  padding-left: 40px;
+  font-size: 18px;
 }
 
-#preview-kitchen {
-  order: 1;
+.edit-form {
+  margin-left: 45px;
+  margin-top: -25px;
 }
 
-#preview-corridor {
-  order: 2;
+.edit-buttons {
+  position: absolute;
+  right: 25px;
+  top: 39px;
+  font-size: 14px;
 }
 
-#preview-garden {
-  order: 3;
+.edit-buttons button {
+  margin-left: 10px;
 }
 
-#preview-storage {
-  order: 4;
+.edit-buttons a {
+  margin-left: 10px;
+  color: red;
+  text-decoration: none;
 }
 
-/* 各プレビューコンテナの内部コンテンツのスタイル */
-#inner-kitchen,
-#inner-corridor,
-#inner-garden,
-#inner-storage {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
+.edit-buttons a:hover {
+  text-decoration: underline;
+}
+
+.item-container {
+  height: 450px;
+  overflow-y: scroll;
+}
+
+.item-list {
+  border-collapse: collapse;
+  width: 90%;
+  font-size: 14px;
+  margin-left: 20px;
+}
+
+.item-list tbody tr {
+  height: 40px;
+  max-height: 40px;
+}
+
+.item-list th,
+.item-list td {
+  border: 1px solid black;
   padding: 5px;
+  font-size: 14px;
+}
+
+.item-list th {
+  background-color: #f2f2f22d;
+}
+
+.item-list td:not(:last-child) {
+  width: 100px;
+}
+
+.item-list td.description {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.item-list th:nth-child(5) {
+  width: 200px;
+}
+
+.item-form {
+  font-size: 16px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+
+.actions input[type="submit"] {
+  margin-left: 10px;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* ここを修正 */
+}
+
+.field label {
+  margin-right: 10px;
+  text-align: right;
+  width: 100px;
+}
+
+.field input[type="text"],
+.field input[type="number"],
+.field select {
+  flex: 1;
+  text-align: left; /* ここを追加 */
+  margin-right: 50px; /* 右側のスペースを追加 */
+  margin-top: 2px;
 }
