@@ -14,7 +14,7 @@
           <% end %>
         </div>
         <div class="edit-buttons">
-          <button class="edit-button" data-kitchen-id="<%= @kitchen.id %>">編集</button>
+          <button class="edit-button" data-kitchen-id="<%= @kitchen.id %>">名前の編集</button>
           <%= link_to "削除", kitchen_path(@kitchen), method: :delete, data: { confirm: "本当に削除しますか？" } %>
         </div>
       <% else %>
@@ -33,29 +33,174 @@
       </script>
 
       <div class="item-container">
-        <table class="item-list">
-          <thead>
+      <table class="item-list">
+        <thead>
+          <tr>
+            <th>名前</th>
+            <th>数量</th>
+            <th>期限</th>
+            <th>日付</th>
+            <th>説明</th>
+            <th>編集</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @items.order(date: :desc).each do |item| %>
             <tr>
-              <th>名前</th>
-              <th>数量</th>
-              <th>期限</th>
-              <th>日付</th>
-              <th>説明</th>
+              <td><span class="item-name"><%= item.name %></span></td>
+              <td><span class="item-quantity"><%= item.quantity %> (<%= Unit.find_by(id: item.unit_id)&.name %>)</span></td>
+              <td>
+                <% if item.date_type_id == 4 %>
+                  <span class="item-date-type">その他</span>
+                <% else %>
+                  <span class="item-date-type"><%= DateType.find_by(id: item.date_type_id)&.name %></span>
+                <% end %>
+              </td>
+              <td><span class="item-date"><%= item.date.strftime('%Y/%m/%d') %></span></td>
+              <td><span class="item-description"><%= item.description %></span></td>
+              <td>
+                <div class="item-actions">
+                  <span class="edit-button" data-item-id="<%= item.id %>">編集</span>
+                  <span class="update-button" data-item-id="<%= item.id %>" style="display: none;">更新</span>
+                  <span class="delete-button" data-item-id="<%= item.id %>">削除</span>
+                </div>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            <% @items.order(date: :desc).each do |item| %>
-              <tr>
-                <td><%= item.name %></td>
-                <td><%= item.quantity %> (<%= Unit.find_by(id: item.unit_id)&.name %>)</td>
-                <td><%= DateType.find_by(id: item.date_type_id)&.name %></td>
-                <td><%= item.date.strftime('%Y/%m/%d') %></td>
-                <td><%= item.description %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // 編集ボタンをクリックした時の処理
+        const editButtons = document.querySelectorAll('.edit-button');
+        editButtons.forEach((button) => {
+          button.addEventListener('click', (event) => {
+            const itemId = event.target.dataset.itemId;
+            const itemRow = event.target.closest('tr');
+            const itemName = itemRow.querySelector('.item-name').textContent;
+            const itemQuantity = itemRow.querySelector('.item-quantity').textContent;
+            const itemDateType = itemRow.querySelector('.item-date-type').textContent;
+            const itemDate = itemRow.querySelector('.item-date').textContent;
+            const itemDescription = itemRow.querySelector('.item-description').textContent;
+
+            // 編集フォームの表示
+            itemRow.innerHTML = `
+              <td><input type="text" class="edit-item-name" value="${itemName}"></td>
+              <td>
+                <input type="text" class="edit-item-quantity">
+                <select class="edit-item-unit">
+                  <%= options_for_select(Unit.all.map { |u| [u.name, u.id] }) %>
+                </select>
+              </td>
+              <td>
+                <select class="edit-item-date-type">
+                  <%= options_for_select(DateType.all.map { |d| [d.name, d.id] }) %>
+                </select>
+              </td>
+              <td><input type="date" class="edit-item-date" value="${itemDate.split('/').join('-')}"></td>
+              <td><textarea class="edit-item-description">${itemDescription}</textarea></td>
+              <td>
+                <div class="item-actions">
+                  <span class="cancel-button">やめる</span>
+                  <span class="update-button" data-item-id="${itemId}">更新</span>
+                </div>
+              </td>
+            `;
+
+            // キャンセルボタンをクリックした時の処理
+            const cancelButton = itemRow.querySelector('.cancel-button');
+            cancelButton.addEventListener('click', () => {
+              // 元の表示に戻す
+              itemRow.innerHTML = `
+                <td><span class="item-name">${itemName}</span></td>
+                <td><span class="item-quantity">${itemQuantity}</span></td>
+                <td><span class="item-date-type">${itemDateType}</span></td>
+                <td><span class="item-date">${itemDate}</span></td>
+                <td><span class="item-description">${itemDescription}</span></td>
+                <td>
+                  <div class="item-actions">
+                    <span class="edit-button" data-item-id="${itemId}">編集</span>
+                    <span class="update-button" data-item-id="${itemId}" style="display: none;">更新</span>
+                    <span class="delete-button" data-item-id="${itemId}">削除</span>
+                  </div>
+                </td>
+              `;
+            });
+
+            // 更新ボタンをクリックした時の処理
+            const updateButton = itemRow.querySelector('.update-button');
+            updateButton.addEventListener('click', () => {
+              const updatedItemName = itemRow.querySelector('.edit-item-name').value;
+              const updatedItemQuantity = itemRow.querySelector('.edit-item-quantity').value;
+              const updatedItemDateType = itemRow.querySelector('.edit-item-date-type').value;
+              const updatedItemDate = itemRow.querySelector('.edit-item-date').value;
+              const updatedItemDescription = itemRow.querySelector('.edit-item-description').value;
+              const updatedItemUnitElement = itemRow.querySelector('.edit-item-unit');
+              const updatedItemUnit = updatedItemUnitElement.selectedOptions[0].value;
+
+              const kitchenId = <%= @kitchen.id %>; // kitchen_id を直接取得
+
+              // サーバーへのリクエストを行う
+              fetch(`/kitchens/${kitchenId}/items/${itemId}`, {
+                method: 'PATCH',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({
+                  item: {
+                    name: updatedItemName,
+                    quantity: updatedItemQuantity,
+                    unit_id: updatedItemUnit,
+                    date_type_id: updatedItemDateType,
+                    date: updatedItemDate,
+                    description: updatedItemDescription
+                  },
+                  kitchen_id: kitchenId
+                })
+              })
+                .then(() => {
+                  // リロードする
+                  location.reload();
+                })
+                .catch((error) => {
+                  // エラーハンドリングを行う
+                  console.error(error);
+                });
+            });
+
+
+            // 削除ボタンをクリックした時の処理
+            const deleteButtons = document.querySelectorAll('.delete-button');
+            deleteButtons.forEach((button) => {
+              button.addEventListener('click', (event) => {
+                const itemId = event.target.dataset.itemId;
+
+                // サーバーへのリクエストを行う
+                fetch(`/items/${itemId}`, {
+                  method: 'DELETE',
+                })
+                  .then((response) => response.json())
+                  .then((data) => {
+                    // レスポンスの処理を行う
+                    // 例: 成功メッセージを表示するなど
+
+                    // フロントエンドの表示から削除する
+                    const itemRow = event.target.closest('tr');
+                    itemRow.remove();
+                  })
+                  .catch((error) => {
+                    // エラーハンドリングを行う
+                  });
+              });
+            });
+          });
+        })
+      });
+    </script>
+
 
       <div class="item-form">
         <%= form_with(model: Item.new, url: kitchen_items_path(@kitchen), local: true) do |form| %>
