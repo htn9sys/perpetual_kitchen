@@ -34,6 +34,29 @@
   text-decoration: underline;
 }
 
+.edit-item-name,
+.edit-item-date-type {
+  width: 65px;
+}
+
+.edit-item-date {
+  width: 68px;
+}
+
+.edit-item-quantity {
+  width: 40px;
+}
+
+.edit-item-description {
+  width: 65px;
+  height: 60px;
+  white-space: pre-wrap;
+}
+
+.item-actions {
+  width: 36px;
+}
+
 .item-container {
   height: 450px;
   overflow-y: scroll;
@@ -72,7 +95,7 @@
 }
 
 .item-list th:nth-child(5) {
-  width: 200px;
+  width: 100px;
 }
 
 .item-form {
