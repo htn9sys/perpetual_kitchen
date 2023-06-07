@@ -14,22 +14,22 @@
           <% end %>
         </div>
         <div class="edit-buttons">
-          <button class="edit-button" data-kitchen-id="<%= @kitchen.id %>">名前の編集</button>
-          <%= link_to "削除", kitchen_path(@kitchen), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+          <%= link_to "名前の編集", "javascript:void(0);", class: "edit-link-button", data: { kitchen_id: @kitchen.id } %>
+          <%= link_to "削除", kitchen_path(@kitchen), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "delete-link-button" %>
         </div>
       <% else %>
         <h2>Unknown Type (<%= @kitchen.name %>)</h2>
       <% end %>
 
       <script>
-        const editButtons = document.querySelectorAll(".edit-button");
-        editButtons.forEach((button) => {
-          button.addEventListener("click", () => {
-            const kitchenId = button.getAttribute("data-kitchen-id");
-            const editForm = document.getElementById(`edit-form-${kitchenId}`);
-            editForm.style.display = "block";
+        const editButtons = document.querySelectorAll(".edit-link-button");
+          editButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+              const kitchenId = button.getAttribute("data-kitchen-id");
+              const editForm = document.getElementById(`edit-form-${kitchenId}`);
+              editForm.style.display = "block";
+            });
           });
-        });
       </script>
 
       <div class="item-container">
@@ -56,7 +56,14 @@
                   <span class="item-date-type"><%= DateType.find_by(id: item.date_type_id)&.name %></span>
                 <% end %>
               </td>
-              <td><span class="item-date"><%= item.date.strftime('%Y/%m/%d') %></span></td>
+              <td>
+                <span class="item-date
+                  
+                  <%= 'red' if item.date <= @one_week_ago && item.date >= @today %>
+                  <%= 'blue' if item.date < @today %>">
+                  <%= item.date.strftime('%Y/%m/%d') %>
+                </span>
+              </td>
               <td><span class="item-description"><%= item.description %></span></td>
               <td>
                 <div class="item-actions">

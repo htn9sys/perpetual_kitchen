@@ -6,6 +6,9 @@ class ItemsController < ApplicationController
   def index
     @items = @kitchen.items.order(date: :asc)
     @item = Item.new
+
+    @today = Date.today
+    @one_week_ago = @today + 7.days
   end
 
   def create

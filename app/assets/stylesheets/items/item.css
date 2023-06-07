@@ -26,7 +26,7 @@
 
 .edit-buttons a {
   margin-left: 10px;
-  color: red;
+  color: rgb(0, 0, 0);
   text-decoration: none;
 }
 
@@ -36,11 +36,23 @@
 
 .edit-item-name,
 .edit-item-date-type {
-  width: 65px;
+  width: 67px;
 }
 
 .edit-item-date {
   width: 68px;
+}
+
+.red {
+  color: red;
+  font-size: 15px;
+  text-shadow: 1px 1px 3px rgb(219, 169, 169);
+}
+
+.blue {
+  color: blue;
+  font-size: 15px;
+  text-shadow: 1px 1px 3px rgb(208, 197, 248);
 }
 
 .edit-item-quantity {
@@ -64,7 +76,7 @@
 
 .item-list {
   border-collapse: collapse;
-  width: 90%;
+  width: 95%;
   font-size: 14px;
   margin-left: 20px;
 }
@@ -82,7 +94,7 @@
 }
 
 .item-list th {
-  background-color: #f2f2f22d;
+  background-color: #f2f2f275;
 }
 
 .item-list td:not(:last-child) {
