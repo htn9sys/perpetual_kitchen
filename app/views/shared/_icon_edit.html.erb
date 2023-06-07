@@ -1,9 +1,11 @@
 <div class="icon-button">
   <%= link_to root_path, class: "button-link" do %>
-    <button type="button" class="items-add-btn">ホームへ戻る<br>┏</button>
+    <button type="button" class="items-add-btn">トップへ戻る<br>←</button>
   <% end %>
   
-  <button type="button" class="items-notice-btn">お知らせ<br>╋</button>
+  <%= link_to notices_path, class: "button-link" do %>
+    <button type="button" class="items-notice-btn">お知らせ<br>╋</button>
+  <% end %>
 
   <%= link_to calendars_path, class: "button-link" do %>
     <button type="button" class="items-calendar-btn">カレンダー<br>┗</button>

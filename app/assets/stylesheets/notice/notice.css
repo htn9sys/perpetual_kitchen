@@ -1,0 +1,40 @@
+.kitchen-container-notice {
+  position: relative;
+  width: 450px;
+  height: 620px;
+  text-align: center;
+  padding-top: 10px;
+  border: none;
+  margin-top: 15px;
+  margin-left: 25px;
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+  text-shadow: 3px 3px 3px rgb(255, 255, 255);
+  overflow: hidden;
+  overflow-y: auto;
+  box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.253), 1px 3px 10px rgba(0, 0, 0, 0.329);
+  background-color: #f2f2f23f;
+}
+
+.kitchen-container-notice thead {
+  height: 20px;
+}
+
+.kitchen-container-notice tbody {
+  font-size: 16px;
+}
+
+.notice-table {
+  border-collapse: collapse;
+  width: 95%;
+  max-height: 600px; /* 適宜調整してください */
+  border: 1px solid #ccc;
+  margin-left: 11px;
+
+}
+
+.notice-table th,
+.notice-table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+}

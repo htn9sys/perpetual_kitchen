@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :storages
   resources :corridors
   resources :calendars
+  resources :notices, only: [:index]
 end

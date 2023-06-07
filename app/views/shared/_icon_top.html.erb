@@ -4,7 +4,9 @@
     <div id="candidates-container" class="candidates-container"></div>
   </div>
   
-  <button type="button" class="items-notice-btn">お知らせ<br>╋</button>
+  <%= link_to notices_path, class: "button-link" do %>
+    <button type="button" class="items-notice-btn">お知らせ<br>╋</button>
+  <% end %>
 
   <%= link_to calendars_path, class: "button-link" do %>
     <button type="button" class="items-calendar-btn">カレンダー<br>┗</button>
