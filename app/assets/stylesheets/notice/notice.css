@@ -30,11 +30,14 @@
   max-height: 600px; /* 適宜調整してください */
   border: 1px solid #ccc;
   margin-left: 11px;
-
 }
 
 .notice-table th,
 .notice-table td {
   padding: 8px;
   border: 1px solid #ccc;
+}
+
+a.notice-link {
+  color: inherit;
 }

@@ -8,51 +8,39 @@
         お知らせ
       </thead>
         <tbody>
-          <% if @items.present? %>
-            <% @items.each do |item| %>
-              <tr>
-                <td>
+          <% (@items + @calendars).sort_by { |item| item.is_a?(Item) ? item.date : item.start_date }.each do |item| %>
+            <tr>
+              <td>
+                <% if item.is_a?(Item) %>
                   <% if item.date < @today %>
                     <% if item.date_type.id == 4 %>
                       <%= "#{item.kitchen.kitchen_type.name}(#{item.kitchen.name})にある、「#{item.name}」の期限が過ぎています" %>
                     <% else %>
                       <%= "#{item.kitchen.kitchen_type.name}(#{item.kitchen.name})にある、「#{item.name}」の#{item.date_type.name}が過ぎています" %>
                     <% end %>
-                    <br>
-                    <%= link_to "食材を確認しに行く", kitchen_items_path(item.kitchen) %>
+                    <br><br>
+                    <%= link_to "食材を確認しに行く 😬💦", kitchen_items_path(item.kitchen), class: "notice-link" %>
                   <% elsif item.date <= @one_week_later %>
                     <% if item.date_type.id == 4 %>
                       <%= "#{item.kitchen.kitchen_type.name}(#{item.kitchen.name})にある、「#{item.name}」の期限が近づいています" %>
                     <% else %>
                       <%= "#{item.kitchen.kitchen_type.name}(#{item.kitchen.name})にある、「#{item.name}」の#{item.date_type.name}が近づいています" %>
                     <% end %>
-                    <br>
-                    <%= link_to "食材を確認しに行く", kitchen_items_path(item.kitchen) %>
+                    <br><br>
+                    <%= link_to "食材を確認しに行く 😐", kitchen_items_path(item.kitchen), class: "notice-link" %>
                   <% end %>
-                </td>
-              </tr>
-            <% end %>
-          <% end %>
-
-          <% if @one_week_later_calendar.present? && @one_week_later_calendar.start_date == @one_week_later %>
-            <tr>
-              <td>
-                1週間後に「<%= @one_week_later_calendar.title %>」です
-                <br>
-                <%= link_to "カレンダーを確認する", calendars_path %>
+                <% elsif item.is_a?(Calendar) %>
+                  <% if item.start_date == @today %>
+                    今日は「<%= item.title %>」の日です
+                  <% elsif item.start_date == @one_week_later %>
+                    1週間後に「<%= item.title %>」です
+                  <% end %>
+                  <br><br>
+                  <%= link_to "カレンダーを確認する 📅", calendars_path, class: "notice-link" %>
+                <% end %>
               </td>
             </tr>
           <% end %>
-          <% if @today_calendar.present? %>
-            <tr>
-              <td>
-                今日は「<%= @today_calendar.title %>」の日です
-                <br>
-                <%= link_to "カレンダーを確認する", calendars_path %>
-                </td>
-              </tr>
-          <% end %>
-
         </tbody>
       </table>
     </div>
