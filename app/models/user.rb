@@ -37,5 +37,6 @@ class User < ApplicationRecord
 
   has_many :calendars
   has_many :kitchens
+  has_many :corridors
   has_many :items
 end

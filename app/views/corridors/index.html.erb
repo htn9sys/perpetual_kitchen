@@ -7,6 +7,55 @@
       <div class="slide-container_corridor">
         <div class="slide slide-1">廊下</div>
         <div class="slide slide-2">廊下 2</div>
+
+        <% @corridors.each do |corridor| %>
+          <% if corridor.corridor_type_id == 2 %>
+            <div id="corridor_<%= corridor.id %>" class="draggable corridor" data-type="<%= corridor.corridor_type_id %>">
+              <%= render 'shared/corridor', type_id: corridor.corridor_type_id %>
+            </div>
+          <% elsif corridor.corridor_type_id == 3 %>
+            <div id="corridor_large_<%= corridor.id %>" class="draggable corridor_large" data-type="<%= corridor.corridor_type_id %>">
+              <%= render 'shared/corridor_large', type_id: corridor.corridor_type_id %>
+            </div>
+          <% elsif corridor.corridor_type_id == 4 %>
+            <div id="shelf_<%= corridor.id %>" class="draggable shelf" data-type="<%= corridor.corridor_type_id %>">
+              <%= render 'shared/shelf', type_id: corridor.corridor_type_id %>
+            </div>
+          <% elsif corridor.corridor_type_id == 5 %>
+            <div id="box_<%= corridor.id %>" class="draggable box" data-type="<%= corridor.corridor_type_id %>">
+              <%= render 'shared/box', type_id: corridor.corridor_type_id %>
+            </div>
+          <% end %>
+        <% end %>
+
+        <script>
+          $(function() {
+            $(".draggable").draggable({
+              containment: ".slide-container_corridor",
+              stop: function(event, ui) {
+                const id = $(this).attr('id');
+                const top = ui.position.top;
+                const left = ui.position.left;
+                localStorage.setItem(id + "_position", JSON.stringify({ top: top, left: left }));
+              }
+            });
+
+            $(".draggable").each(function() {
+              const id = $(this).attr('id');
+              const storedPosition = localStorage.getItem(id + "_position");
+              if (storedPosition) {
+                const position = JSON.parse(storedPosition);
+                $(this).css({ top: position.top + 'px', left: position.left + 'px', position: 'absolute' });
+              }
+            });
+
+            // クリックイベントの追加
+            $("[id^='refrigerator_'], [id^='refrigeratorlarge_'], [id^='shelf_'], [id^='box_']").on('click', function() {
+              const corridorId = $(this).attr('id').split('_')[1];
+              window.location.href = "/corridors/" + corridorId + "/items"; // itemのindexページへのリンク
+            });
+          });
+        </script>
       </div>
       <div class="slide-container_corridor bottom"></div>
       <div class="slide-control left">&lt;</div>
@@ -14,6 +63,6 @@
     </div>
 
     <script src="button.js"></script>
-    <%= render 'shared/icon_type' %>
+    <%= render 'shared/icon_type_corridor' %>
   </div>
 </div>

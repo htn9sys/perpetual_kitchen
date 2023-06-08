@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_04_041142) do
+ActiveRecord::Schema.define(version: 2023_06_08_034855) do
 
   create_table "calendars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 2023_06_04_041142) do
     t.index ["user_id"], name: "index_calendars_on_user_id"
   end
 
+  create_table "corridors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "corridor_type_id", null: false
+    t.string "name", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_corridors_on_user_id"
+  end
+
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.integer "quantity", null: false
@@ -33,10 +42,16 @@ ActiveRecord::Schema.define(version: 2023_06_04_041142) do
     t.date "date", null: false
     t.text "description"
     t.bigint "user_id", null: false
-    t.bigint "kitchen_id", null: false
+    t.bigint "kitchen_id"
+    t.bigint "corridor_id"
+    t.bigint "garden_id"
+    t.bigint "storage_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["corridor_id"], name: "index_items_on_corridor_id"
+    t.index ["garden_id"], name: "index_items_on_garden_id"
     t.index ["kitchen_id"], name: "index_items_on_kitchen_id"
+    t.index ["storage_id"], name: "index_items_on_storage_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 

@@ -8,7 +8,10 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.date       :date,            null: false
       t.text       :description
       t.references :user,            null: false
-      t.references :kitchen,         null: false
+      t.references :kitchen
+      t.references :corridor
+      t.references :garden
+      t.references :storage
       t.timestamps
     end
   end

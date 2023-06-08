@@ -6,9 +6,11 @@ Rails.application.routes.draw do
   resources :kitchens do
     resources :items
   end
+  resources :corridors do
+    resources :items
+  end
   resources :gardens
   resources :storages
-  resources :corridors
   resources :calendars
   resources :notices, only: [:index]
 end
