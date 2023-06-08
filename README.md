@@ -13,29 +13,40 @@
 
 - has_many :items
 - has_many :calendars
-- has_many :areas
+- has_many :kitchens
+- has_many :corridors
+- has_many :gardens
+- has_many :storages
 
 ## items テーブル
 
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
 | name         | string     | null: false,                   |
-| type_id      | integer    | null: false,                   |
-| list_id      | integer    | null: false,                   |
 | quantity     | integer    | null: false,                   |
 | unit_id      | integer    | null: false,                   |
 | date_type_id | integer    | null: false,                   |
-| date         | integer    | null: false,                   |
+| date         | date       | null: false,                   |
+| description  | text       |                                |
 | user         | references | null: false, foreign_key: true |
-| area         | references | null: false, foreign_key: true |
+| kitchen      | references | foreign_key: true              |
+| corridor     | references | foreign_key: true              |
+| garden       | references | foreign_key: true              |
+| storage      | references | foreign_key: true              |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :area
+- belongs_to :kitchen
+- belongs_to :corridor
+- belongs_to :garden
+- belongs_to :storage
 - belongs_to :calendar
 
-## areas テーブル
+## kitchens テーブル
+## corridors テーブル
+## gardens テーブル
+## storages テーブル
 
 | Column   | Type       | Options                        |
 | -------- | ---------- | ------------------------------ |
@@ -63,4 +74,3 @@
 ### Association
 
 - belongs_to :user
-- has_many :items
