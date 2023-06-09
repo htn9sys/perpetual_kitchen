@@ -1,0 +1,254 @@
+<% if @garden %>
+        <% garden_type = GardenType.find_by(id: @garden.garden_type_id) %>
+        <% if garden_type %>
+          <h2><b><%= garden_type.name %></b> (<%= @garden.name %>)</h2>
+          <div id="edit-form-<%= @garden.id %>" class="edit-form" style="display: none;">
+            <%= form_for(@garden, url: garden_path(@garden), method: :patch) do |f| %>
+              <%= f.text_field :name %>
+              <%= f.submit "更新" %>
+            <% end %>
+          </div>
+          <div class="edit-buttons">
+            <%= link_to "名前の編集", "javascript:void(0);", class: "edit-link-button", data: { garden_id: @garden.id } %>
+            <%= link_to "削除", garden_path(@garden), method: :delete, data: { confirm: "この収納スペースを削除しますか？" }, class: "delete-link-button" %>
+          </div>
+        <% else %>
+          <h2>Unknown Type (<%= @garden.name %>)</h2>
+        <% end %>
+
+        <script>
+          const editButtons = document.querySelectorAll(".edit-link-button");
+            editButtons.forEach((button) => {
+              button.addEventListener("click", () => {
+                const gardenId = button.getAttribute("data-garden-id");
+                const editForm = document.getElementById(`edit-form-${gardenId}`);
+                editForm.style.display = "block";
+              });
+            });
+        </script>
+
+        <div class="item-container">
+        <table class="item-list">
+          <thead>
+            <tr>
+              <th>名前</th>
+              <th>数量</th>
+              <th>期限</th>
+              <th>日付</th>
+              <th>説明</th>
+              <th>編集</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @items.order(date: :desc).each do |item| %>
+              <tr>
+                <td><span class="item-name"><%= item.name %></span></td>
+                <td><span class="item-quantity"><%= item.quantity %> (<%= Unit.find_by(id: item.unit_id)&.name %>)</span></td>
+                <td>
+                  <% if item.date_type_id == 4 %>
+                    <span class="item-date-type">その他</span>
+                  <% else %>
+                    <span class="item-date-type"><%= DateType.find_by(id: item.date_type_id)&.name %></span>
+                  <% end %>
+                </td>
+                <td>
+                  <span class="item-date
+                    
+                    <%= 'red' if item.date <= @one_week_ago && item.date >= @today %>
+                    <%= 'blue' if item.date < @today %>">
+                    <%= item.date.strftime('%Y/%m/%d') %>
+                  </span>
+                </td>
+                <td><span class="item-description"><%= item.description %></span></td>
+                <td>
+                  <div class="item-actions">
+                    <span class="edit-button" data-item-id="<%= item.id %>">編集</span>
+                    <span class="custom-delete-button" data-item-id="<%= item.id %>">削除</span>
+                    <span class="update-button" data-item-id="<%= item.id %>" style="display: none;">更新</span>
+                    
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          // 編集ボタンをクリックした時の処理
+          const editButtons = document.querySelectorAll('.edit-button');
+          editButtons.forEach((button) => {
+            button.addEventListener('click', (event) => {
+              const itemId = event.target.dataset.itemId;
+              const itemRow = event.target.closest('tr');
+              const itemName = itemRow.querySelector('.item-name').textContent;
+              const itemQuantity = itemRow.querySelector('.item-quantity').textContent;
+              const itemDateType = itemRow.querySelector('.item-date-type').textContent;
+              const itemDate = itemRow.querySelector('.item-date').textContent;
+              const itemDescription = itemRow.querySelector('.item-description').textContent;
+
+              // 編集フォームの表示
+              itemRow.innerHTML = `
+                <td><input type="text" class="edit-item-name" value="${itemName}"></td>
+                <td>
+                  <input type="text" class="edit-item-quantity">
+                  <select class="edit-item-unit">
+                    <%= options_for_select(Unit.all.map { |u| [u.name, u.id] }) %>
+                  </select>
+                </td>
+                <td>
+                  <select class="edit-item-date-type">
+                    <%= options_for_select(DateType.all.map { |d| [d.name, d.id] }) %>
+                  </select>
+                </td>
+                <td><input type="date" class="edit-item-date" value="${itemDate.split('/').join('-')}"></td>
+                <td><textarea class="edit-item-description">${itemDescription}</textarea></td>
+                <td>
+                  <div class="item-actions">
+                    <span class="cancel-button">やめる</span>
+                    <span class="update-button" data-item-id="${itemId}">更新</span>
+                  </div>
+                </td>
+              `;
+
+              // キャンセルボタンをクリックした時の処理
+              const cancelButton = itemRow.querySelector('.cancel-button');
+              cancelButton.addEventListener('click', () => {
+                // 元の表示に戻す
+                itemRow.innerHTML = `
+                  <td><span class="item-name">${itemName}</span></td>
+                  <td><span class="item-quantity">${itemQuantity}</span></td>
+                  <td><span class="item-date-type">${itemDateType}</span></td>
+                  <td><span class="item-date">${itemDate}</span></td>
+                  <td><span class="item-description">${itemDescription}</span></td>
+                  <td>
+                    <div class="item-actions">
+                      <span class="edit-button" data-item-id="${itemId}">編集</span>
+                      <span class="update-button" data-item-id="${itemId}" style="display: none;">更新</span>
+                      <span class="custom-delete-button" data-item-id="${itemId}">削除</span>
+                    </div>
+                  </td>
+                `;
+              });
+
+              // 更新ボタンをクリックした時の処理
+              const updateButton = itemRow.querySelector('.update-button');
+              updateButton.addEventListener('click', () => {
+                const updatedItemName = itemRow.querySelector('.edit-item-name').value;
+                const updatedItemQuantity = itemRow.querySelector('.edit-item-quantity').value;
+                const updatedItemDateType = itemRow.querySelector('.edit-item-date-type').value;
+                const updatedItemDate = itemRow.querySelector('.edit-item-date').value;
+                const updatedItemDescription = itemRow.querySelector('.edit-item-description').value;
+                const updatedItemUnitElement = itemRow.querySelector('.edit-item-unit');
+                const updatedItemUnit = updatedItemUnitElement.selectedOptions[0].value;
+
+                const gardenId = <%= @garden.id %>;
+
+                // サーバーへのリクエストを行う
+                fetch(`/gardens/${gardenId}/items/${itemId}`, {
+                  method: 'PATCH',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+                  },
+                  body: JSON.stringify({
+                    item: {
+                      name: updatedItemName,
+                      quantity: updatedItemQuantity,
+                      unit_id: updatedItemUnit,
+                      date_type_id: updatedItemDateType,
+                      date: updatedItemDate,
+                      description: updatedItemDescription
+                    },
+                    garden_id: gardenId
+                  })
+                })
+                  .then(() => {
+                    // リロードする
+                    location.reload();
+                  })
+                  .catch((error) => {
+                    // エラーハンドリングを行う
+                    console.error(error);
+                  });
+              });
+            });
+          });
+
+          // 削除ボタンをクリックした時の処理
+          const deleteButtons = document.querySelectorAll('span.custom-delete-button');
+          deleteButtons.forEach((button) => {
+            button.addEventListener('click', (event) => {
+              const itemId = event.target.dataset.itemId;
+              const gardenId = <%= @garden.id %>; // キッチンのIDを取得
+
+              // 確認メッセージを表示
+              const confirmMessage = "食材の削除をしますか？";
+              if (confirm(confirmMessage)) {
+                // サーバーへのリクエストを行う
+                fetch(`/gardens/${gardenId}/items/${itemId}`, {
+                  method: 'DELETE',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+                  },
+                })
+                  .then((response) => {
+                    if (response.ok) {
+                      // レスポンスが成功した場合の処理
+                      // 例: 成功メッセージを表示するなど
+                    } else {
+                      // レスポンスがエラーの場合の処理
+                      throw new Error('削除に失敗しました。');
+                    }
+                  })
+                  .catch((error) => {
+                    // エラーハンドリングを行う
+                    console.error(error);
+                  })
+                  .finally(() => {
+                    // リロードする
+                    location.reload();
+                  });
+              }
+            });
+          });
+        });
+      </script>
+
+
+        <div class="item-form">
+          <%= form_with(model: Item.new, url: garden_items_path(@garden), local: true) do |form| %>
+            <div class="field">
+              <%= form.label :name, "名前" %>
+              <%= form.text_field :name %>
+            </div>
+            <div class="field">
+              <%= form.label :quantity, "数量" %>
+              <%= form.number_field :quantity %>
+            </div>
+            <div class="field">
+              <%= form.label :unit_id, "単位" %>
+              <%= form.select :unit_id, options_for_select(Unit.all.map { |u| [u.name, u.id] }) %>
+            </div>
+            <div class="field">
+              <%= form.label :date_type_id, "期限の種類" %>
+              <%= form.select :date_type_id, options_for_select(DateType.all.map { |d| [d.name, d.id] }) %>
+            </div>
+            <div class="field">
+              <%= form.label :date, "日付" %>
+              <%= form.date_field :date %>
+            </div>
+            <div class="field">
+              <%= form.label :description, "説明(任意)" %>
+              <%= form.text_area :description %>
+            </div>
+            <div class="actions">
+              <div class="field">
+                <%= form.submit "保存" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>

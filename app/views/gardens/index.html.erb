@@ -7,6 +7,56 @@
       <div class="slide-container_garden">
         <div class="slide slide-1">庭</div>
         <div class="slide slide-2">庭 2</div>
+
+        <% @gardens.each do |garden| %>
+          <% if garden.garden_type_id == 2 %>
+            <div id="refrigerator_<%= garden.id %>" class="draggable refrigerator" data-type="<%= garden.garden_type_id %>">
+              <%= render 'shared/refrigerator', type_id: garden.garden_type_id %>
+            </div>
+          <% elsif garden.garden_type_id == 3 %>
+            <div id="refrigeratorlarge_<%= garden.id %>" class="draggable refrigerator_large" data-type="<%= garden.garden_type_id %>">
+              <%= render 'shared/refrigerator_large', type_id: garden.garden_type_id %>
+            </div>
+          <% elsif garden.garden_type_id == 4 %>
+            <div id="shelf_<%= garden.id %>" class="draggable shelf" data-type="<%= garden.garden_type_id %>">
+              <%= render 'shared/shelf', type_id: garden.garden_type_id %>
+            </div>
+          <% elsif garden.garden_type_id == 5 %>
+            <div id="box_<%= garden.id %>" class="draggable box" data-type="<%= garden.garden_type_id %>">
+              <%= render 'shared/box', type_id: garden.garden_type_id %>
+            </div>
+          <% end %>
+        <% end %>
+
+        <script>
+          $(function() {
+            $(".draggable").draggable({
+              containment: ".slide-container_garden",
+              stop: function(event, ui) {
+                const id = $(this).attr('id');
+                const top = ui.position.top;
+                const left = ui.position.left;
+                localStorage.setItem(id + "_position", JSON.stringify({ top: top, left: left }));
+              }
+            });
+
+            $(".draggable").each(function() {
+              const id = $(this).attr('id');
+              const storedPosition = localStorage.getItem(id + "_position");
+              if (storedPosition) {
+                const position = JSON.parse(storedPosition);
+                $(this).css({ top: position.top + 'px', left: position.left + 'px', position: 'absolute' });
+              }
+            });
+
+            // クリックイベントの追加
+            $("[id^='refrigerator_'], [id^='refrigeratorlarge_'], [id^='shelf_'], [id^='box_']").on('click', function() {
+              const gardenId = $(this).attr('id').split('_')[1];
+              window.location.href = "/gardens/" + gardenId + "/items"; // itemのindexページへのリンク
+            });
+          });
+        </script>
+
       </div>
       <div class="slide-container_garden bottom"></div>
       <div class="slide-control left">&lt;</div>
@@ -14,6 +64,6 @@
     </div>
 
     <script src="button.js"></script>
-    <%= render 'shared/icon_type_kitchen' %> <!-- 仮 -->
+    <%= render 'shared/icon_type_garden' %>
   </div>
 </div>

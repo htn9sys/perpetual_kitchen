@@ -230,6 +230,24 @@
   border-color: #f9f9f9a8 transparent transparent transparent;
 }
 
+.candidate {
+  display: flex;
+  padding: 5px 0;
+}
+
+.name-input {
+  margin-right: 10px;
+}
+
+.save-button {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/*全ページ共通_フッター*/
+
+/*キッチン用_フッター*/
+
 .candidates-container2 {
   display: none;
   position: absolute;
@@ -254,19 +272,9 @@
   border-color: #f9f9f9a8 transparent transparent transparent;
 }
 
-.candidate {
-  display: flex;
-  padding: 5px 0;
-}
+/*キッチン用_フッター*/
 
-.name-input {
-  margin-right: 10px;
-}
-
-.save-button {
-  margin-left: auto;
-  margin-right: 0;
-}
+/*廊下用_フッター*/
 
 .candidates-container_corridor {
   display: none;
@@ -292,4 +300,33 @@
   border-color: #f9f9f9a8 transparent transparent transparent;
 }
 
-/*全ページ共通_フッター*/
+/*廊下用_フッター*/
+
+/*庭用_フッター*/
+
+.candidates-container_garden {
+  display: none;
+  position: absolute;
+  top: -70px;
+  left: 23px;
+  width: 350px;
+  padding: 10px;
+  background-color: #f9f9f93a;
+  border: 1px solid #cccccc00;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.candidates-container_garden::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 10%;
+  transform: translateX(-50%);
+  border-style: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: #f9f9f9a8 transparent transparent transparent;
+}
+
+/*庭用_フッター*/
+

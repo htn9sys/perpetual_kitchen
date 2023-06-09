@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :corridors do
     resources :items
   end
-  resources :gardens
+  resources :gardens do
+    resources :items
+  end
   resources :storages
   resources :calendars
   resources :notices, only: [:index]

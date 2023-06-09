@@ -8,6 +8,8 @@ class ItemsController < ApplicationController
       @items = @kitchen.items.order(date: :asc)
     elsif @corridor
       @items = @corridor.items.order(date: :asc)
+    elsif @garden
+      @items = @garden.items.order(date: :asc)
     else
       @items = Item.none
     end
@@ -22,6 +24,8 @@ class ItemsController < ApplicationController
       @item = @kitchen.items.build(item_params)
     elsif @corridor
       @item = @corridor.items.build(item_params)
+    elsif @garden
+      @item = @garden.items.build(item_params)
     else
       flash.now[:alert] = 'Invalid request.'
       @items = Item.none
@@ -35,11 +39,14 @@ class ItemsController < ApplicationController
         redirect_to kitchen_items_path(@kitchen), notice: 'Item created successfully.'
       elsif @corridor
         redirect_to corridor_items_path(@corridor), notice: 'Item created successfully.'
+      elsif @garden
+        redirect_to garden_items_path(@garden), notice: 'Item created successfully.'
       end
     else
       flash.now[:alert] = 'Failed to create item.'
       @items = @kitchen.items.order(date: :asc) if @kitchen
       @items = @corridor.items.order(date: :asc) if @corridor
+      @items = @garden.items.order(date: :asc) if @garden
       render 'index'
     end
   end
@@ -53,6 +60,8 @@ class ItemsController < ApplicationController
         redirect_to kitchen_items_path(@kitchen), notice: 'Item updated successfully.'
       elsif @corridor
         redirect_to corridor_items_path(@corridor), notice: 'Item updated successfully.'
+      elsif @garden
+        redirect_to garden_items_path(@garden), notice: 'Item updated successfully.'
       end
     else
       flash.now[:alert] = 'Failed to update item.'
@@ -66,6 +75,8 @@ class ItemsController < ApplicationController
         redirect_to kitchen_items_path(@kitchen), notice: 'Item deleted successfully.'
       elsif @corridor
         redirect_to corridor_items_path(@corridor), notice: 'Item deleted successfully.'
+      elsif @garden
+        redirect_to garden_items_path(@garden), notice: 'Item deleted successfully.'
       end
     else
       flash[:alert] = 'Failed to delete item.'
@@ -78,9 +89,15 @@ class ItemsController < ApplicationController
     if params[:kitchen_id].present?
       @kitchen = Kitchen.find(params[:kitchen_id])
       @corridor = nil
+      @garden = nil
     elsif params[:corridor_id].present?
       @corridor = Corridor.find(params[:corridor_id])
       @kitchen = nil
+      @garden = nil
+    elsif params[:garden_id].present?
+      @garden = Garden.find(params[:garden_id])
+      @kitchen = nil
+      @corridor = nil
     else
       flash.now[:alert] = 'Invalid request.'
       @items = Item.none
@@ -93,6 +110,8 @@ class ItemsController < ApplicationController
       @item = @kitchen.items.find(params[:id])
     elsif @corridor
       @item = @corridor.items.find(params[:id])
+    elsif @garden
+      @item = @garden.items.find(params[:id])
     end
   end
 
