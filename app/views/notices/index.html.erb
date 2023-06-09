@@ -12,22 +12,78 @@
             <tr>
               <td>
                 <% if item.is_a?(Item) %>
-                  <% if item.date < @today %>
-                    <% if item.date_type.id == 4 %>
-                      <%= "#{item.kitchen.kitchen_type.name}(#{item.kitchen.name})にある、「#{item.name}」の期限が過ぎています" %>
-                    <% else %>
-                      <%= "#{item.kitchen.kitchen_type.name}(#{item.kitchen.name})にある、「#{item.name}」の#{item.date_type.name}が過ぎています" %>
+                  <% if item.kitchen.present? %>
+                    <% if item.date < @today %>
+                      <% if item.date_type.id == 4 %>
+                        <%= "#{item.kitchen.kitchen_type.name}(#{item.kitchen.name})にある、「#{item.name}」の期限が過ぎています" %>
+                      <% else %>
+                        <%= "#{item.kitchen.kitchen_type.name}(#{item.kitchen.name})にある、「#{item.name}」の#{item.date_type.name}が過ぎています" %>
+                      <% end %>
+                      <br><br>
+                      <%= link_to "食材を確認しに行く 😬💦", kitchen_items_path(item.kitchen), class: "notice-link" %>
+                    <% elsif item.date <= @one_week_later %>
+                      <% if item.date_type.id == 4 %>
+                        <%= "#{item.kitchen.kitchen_type.name}(#{item.kitchen.name})にある、「#{item.name}」の期限が近づいています" %>
+                      <% else %>
+                        <%= "#{item.kitchen.kitchen_type.name}(#{item.kitchen.name})にある、「#{item.name}」の#{item.date_type.name}が近づいています" %>
+                      <% end %>
+                      <br><br>
+                      <%= link_to "食材を確認しに行く 😐", kitchen_items_path(item.kitchen), class: "notice-link" %>
                     <% end %>
-                    <br><br>
-                    <%= link_to "食材を確認しに行く 😬💦", kitchen_items_path(item.kitchen), class: "notice-link" %>
-                  <% elsif item.date <= @one_week_later %>
-                    <% if item.date_type.id == 4 %>
-                      <%= "#{item.kitchen.kitchen_type.name}(#{item.kitchen.name})にある、「#{item.name}」の期限が近づいています" %>
-                    <% else %>
-                      <%= "#{item.kitchen.kitchen_type.name}(#{item.kitchen.name})にある、「#{item.name}」の#{item.date_type.name}が近づいています" %>
+                  <% elsif item.corridor.present? %>
+                    <% if item.date < @today %>
+                      <% if item.date_type.id == 4 %>
+                        <%= "#{item.corridor.corridor_type.name}(#{item.corridor.name})にある、「#{item.name}」の期限が過ぎています" %>
+                      <% else %>
+                        <%= "#{item.corridor.corridor_type.name}(#{item.corridor.name})にある、「#{item.name}」の#{item.date_type.name}が過ぎています" %>
+                      <% end %>
+                      <br><br>
+                      <%= link_to "食材を確認しに行く 😬💦", corridor_items_path(item.corridor), class: "notice-link" %>
+                    <% elsif item.date <= @one_week_later %>
+                      <% if item.date_type.id == 4 %>
+                        <%= "#{item.corridor.corridor_type.name}(#{item.corridor.name})にある、「#{item.name}」の期限が近づいています" %>
+                      <% else %>
+                        <%= "#{item.corridor.corridor_type.name}(#{item.corridor.name})にある、「#{item.name}」の#{item.date_type.name}が近づいています" %>
+                      <% end %>
+                      <br><br>
+                      <%= link_to "食材を確認しに行く 😐", corridor_items_path(item.corridor), class: "notice-link" %>
                     <% end %>
-                    <br><br>
-                    <%= link_to "食材を確認しに行く 😐", kitchen_items_path(item.kitchen), class: "notice-link" %>
+                  <% elsif item.garden.present? %>
+                    <% if item.date < @today %>
+                      <% if item.date_type.id == 4 %>
+                        <%= "#{item.garden.garden_type.name}(#{item.garden.name})にある、「#{item.name}」の期限が過ぎています" %>
+                      <% else %>
+                        <%= "#{item.garden.garden_type.name}(#{item.garden.name})にある、「#{item.name}」の#{item.date_type.name}が過ぎています" %>
+                      <% end %>
+                      <br><br>
+                      <%= link_to "食材を確認しに行く 😬💦", garden_items_path(item.garden), class: "notice-link" %>
+                    <% elsif item.date <= @one_week_later %>
+                      <% if item.date_type.id == 4 %>
+                        <%= "#{item.garden.garden_type.name}(#{item.garden.name})にある、「#{item.name}」の期限が近づいています" %>
+                      <% else %>
+                        <%= "#{item.garden.garden_type.name}(#{item.garden.name})にある、「#{item.name}」の#{item.date_type.name}が近づいています" %>
+                      <% end %>
+                      <br><br>
+                      <%= link_to "食材を確認しに行く 😐", garden_items_path(item.garden), class: "notice-link" %>
+                    <% end %>
+                  <% elsif item.storage.present? %>
+                    <% if item.date < @today %>
+                      <% if item.date_type.id == 4 %>
+                        <%= "#{item.storage.storage_type.name}(#{item.storage.name})にある、「#{item.name}」の期限が過ぎています" %>
+                      <% else %>
+                        <%= "#{item.storage.storage_type.name}(#{item.storage.name})にある、「#{item.name}」の#{item.date_type.name}が過ぎています" %>
+                      <% end %>
+                      <br><br>
+                      <%= link_to "食材を確認しに行く 😬💦", storage_items_path(item.storage), class: "notice-link" %>
+                    <% elsif item.date <= @one_week_later %>
+                      <% if item.date_type.id == 4 %>
+                        <%= "#{item.storage.storage_type.name}(#{item.storage.name})にある、「#{item.name}」の期限が近づいています" %>
+                      <% else %>
+                        <%= "#{item.storage.storage_type.name}(#{item.storage.name})にある、「#{item.name}」の#{item.date_type.name}が近づいています" %>
+                      <% end %>
+                      <br><br>
+                      <%= link_to "食材を確認しに行く 😐", storage_items_path(item.storage), class: "notice-link" %>
+                    <% end %>
                   <% end %>
                 <% elsif item.is_a?(Calendar) %>
                   <% if item.start_date == @today %>
