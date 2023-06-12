@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   resources :gardens do
     resources :items
   end
-  resources :storages
+  resources :storages do
+    resources :items
+  end
   resources :calendars
   resources :notices, only: [:index]
 end

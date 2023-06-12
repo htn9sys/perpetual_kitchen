@@ -22,9 +22,9 @@ class KitchensController < ApplicationController
   def update
     @kitchen = Kitchen.find(params[:id])
     if @kitchen.update(kitchen_params)
-      redirect_to kitchen_items_path(@kitchen), notice: 'キッチンが更新されました。'
+      redirect_to kitchen_items_path(@kitchen), notice: '更新されました。'
     else
-      flash[:alert] = 'キッチンの更新に失敗しました。'
+      flash[:alert] = '更新に失敗しました。'
       redirect_to kitchen_items_path(@kitchen)
     end
   end
@@ -32,7 +32,7 @@ class KitchensController < ApplicationController
   def destroy
     @kitchen = Kitchen.find(params[:id])
     @kitchen.destroy
-    redirect_to kitchens_url, notice: "キッチンと関連するアイテムが削除されました。"
+    redirect_to kitchens_url, notice: "関連するアイテムが削除されました。"
   end
 
   private

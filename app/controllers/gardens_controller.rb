@@ -22,9 +22,9 @@ class GardensController < ApplicationController
   def update
     @garden = Garden.find(params[:id])
     if @garden.update(garden_params)
-      redirect_to garden_items_path(@garden), notice: 'キッチンが更新されました。'
+      redirect_to garden_items_path(@garden), notice: '更新されました。'
     else
-      flash[:alert] = 'キッチンの更新に失敗しました。'
+      flash[:alert] = '更新に失敗しました。'
       redirect_to garden_items_path(@garden)
     end
   end
@@ -32,7 +32,7 @@ class GardensController < ApplicationController
   def destroy
     @garden = Garden.find(params[:id])
     @garden.destroy
-    redirect_to gardens_url, notice: "キッチンと関連するアイテムが削除されました。"
+    redirect_to gardens_url, notice: "関連するアイテムが削除されました。"
   end
 
   private

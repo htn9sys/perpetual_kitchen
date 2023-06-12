@@ -22,9 +22,9 @@ class CorridorsController < ApplicationController
   def update
     @corridor = Corridor.find(params[:id])
     if @corridor.update(corridor_params)
-      redirect_to corridor_items_path(@corridor), notice: 'キッチンが更新されました。'
+      redirect_to corridor_items_path(@corridor), notice: '更新されました。'
     else
-      flash[:alert] = 'キッチンの更新に失敗しました。'
+      flash[:alert] = '更新に失敗しました。'
       redirect_to corridor_items_path(@corridor)
     end
   end
@@ -32,7 +32,7 @@ class CorridorsController < ApplicationController
   def destroy
     @corridor = Corridor.find(params[:id])
     @corridor.destroy
-    redirect_to corridors_url, notice: "キッチンと関連するアイテムが削除されました。"
+    redirect_to corridors_url, notice: "関連するアイテムが削除されました。"
   end
 
   private
