@@ -69,7 +69,7 @@ https://docs.google.com/spreadsheets/d/1gWj2RvTVhL7BvIR-Bv1XapCrM23yR7AwYPl8Huyq
 
 [![Image from Gyazo](https://i.gyazo.com/239af124ca8ff54ef3b253327fa6c7cf.gif)](https://gyazo.com/239af124ca8ff54ef3b253327fa6c7cf)
 
-
+■以上
 
 # 実装予定の機能
 
@@ -118,3 +118,5 @@ https://docs.google.com/spreadsheets/d/1gWj2RvTVhL7BvIR-Bv1XapCrM23yR7AwYPl8Huyq
 参考にしたのは脱出ゲーム。
 
 見た目もこだわり、修正や削除が手間にならないよう、非同期通信を多めに組み込んだ。
+
+[def]: https://gyazo.com/239af124ca8ff54ef3b253327fa6c7cf
