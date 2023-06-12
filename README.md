@@ -69,6 +69,8 @@ https://docs.google.com/spreadsheets/d/1gWj2RvTVhL7BvIR-Bv1XapCrM23yR7AwYPl8Huyq
 
 [![Image from Gyazo](https://i.gyazo.com/d11d93025d4dd557ea7e15ec66cefca9.gif)](https://gyazo.com/d11d93025d4dd557ea7e15ec66cefca9)
 
+
+
 # 実装予定の機能
 
 収納の種類を増やしたい
