@@ -81,6 +81,7 @@ https://docs.google.com/spreadsheets/d/1gWj2RvTVhL7BvIR-Bv1XapCrM23yR7AwYPl8Huyq
 
 [![Image from Gyazo](https://i.gyazo.com/c5b9fd9ef53981f5bf1296db885045a5.png)](https://gyazo.com/c5b9fd9ef53981f5bf1296db885045a5)
 
+
 # 画面遷移図
 
 [![Image from Gyazo](https://i.gyazo.com/54f48c8c9762c3c30a239add64c617da.png)](https://gyazo.com/54f48c8c9762c3c30a239add64c617da)
