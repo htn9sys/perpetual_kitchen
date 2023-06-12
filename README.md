@@ -67,7 +67,7 @@ https://docs.google.com/spreadsheets/d/1gWj2RvTVhL7BvIR-Bv1XapCrM23yR7AwYPl8Huyq
 
 ■ログアウト
 
-[![Image from Gyazo](https://i.gyazo.com/d11d93025d4dd557ea7e15ec66cefca9.gif)](https://gyazo.com/d11d93025d4dd557ea7e15ec66cefca9)
+[![Image from Gyazo](https://i.gyazo.com/239af124ca8ff54ef3b253327fa6c7cf.gif)](https://gyazo.com/239af124ca8ff54ef3b253327fa6c7cf)
 
 
 
