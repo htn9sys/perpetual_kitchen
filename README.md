@@ -65,11 +65,6 @@ https://docs.google.com/spreadsheets/d/1gWj2RvTVhL7BvIR-Bv1XapCrM23yR7AwYPl8Huyq
 
 [![Image from Gyazo](https://i.gyazo.com/32ad8ab89194a60415d1d47a1a3df90c.gif)](https://gyazo.com/32ad8ab89194a60415d1d47a1a3df90c)
 
-■ログアウト
-
-[![Image from Gyazo](https://i.gyazo.com/239af124ca8ff54ef3b253327fa6c7cf.gif)](https://gyazo.com/239af124ca8ff54ef3b253327fa6c7cf)
-
-■以上
 
 # 実装予定の機能
 
