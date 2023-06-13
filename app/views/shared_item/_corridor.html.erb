@@ -222,11 +222,11 @@
           <%= form_with(model: Item.new, url: corridor_items_path(@corridor), local: true) do |form| %>
             <div class="field">
               <%= form.label :name, "名前" %>
-              <%= form.text_field :name %>
+              <%= form.text_field :name, placeholder:"必須項目" %>
             </div>
             <div class="field">
               <%= form.label :quantity, "数量" %>
-              <%= form.number_field :quantity %>
+              <%= form.number_field :quantity, placeholder:"必須項目" %>
             </div>
             <div class="field">
               <%= form.label :unit_id, "単位" %>

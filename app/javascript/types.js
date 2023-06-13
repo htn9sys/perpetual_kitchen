@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const selectButton2 = document.getElementById("select-button5");
   const candidatesContainerStorage = document.getElementById("candidates-container_storage");
   const storageTypeSelect = document.createElement("select");
   const nameInput = document.createElement("input");
@@ -12,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     { id: 5, name: '段ボール' }
   ];
 
-  selectButton2.addEventListener("click", function() {
+  ("click", function() {
     storageTypeSelect.innerHTML = "";
     let defaultOption = document.createElement("option");
     defaultOption.value = "";
@@ -57,7 +56,6 @@ function saveCandidate(storageTypeId, name) {
   xhr.open("POST", "/storages", true);
   xhr.setRequestHeader("Content-Type", "application/json");
 
-  // CSRFトークンをリクエストヘッダに追加する
   const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   xhr.setRequestHeader("X-CSRF-Token", token);
 
@@ -65,8 +63,9 @@ function saveCandidate(storageTypeId, name) {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
         console.log("保存が成功しました。");
-        hideCandidatesContainer(); // 保存成功時に吹き出しを非表示にする
-        location.reload(); // ページをリロードする
+        hideCandidatesContainer();
+        // location.reload();
+        window.location.href = "/new_page";
       } else {
         console.log("保存中にエラーが発生しました。");
       }
@@ -74,8 +73,8 @@ function saveCandidate(storageTypeId, name) {
   };
 
   const data = {
-    storage: {
-      storage_type_id: storageTypeId,
+    corridor: {
+      corridor_type_id: corridorTypeId,
       name: name
     }
   };
@@ -83,7 +82,7 @@ function saveCandidate(storageTypeId, name) {
   xhr.send(JSON.stringify(data));
 
   function hideCandidatesContainer() {
-    const candidatesContainerStorage = document.getElementById("candidates-container_storage");
-    candidatesContainerStorage.style.display = "none";
+    const candidatesContainerCorridor = document.getElementById("candidates-container_corridor");
+    candidatesContainerCorridor.style.display = "none";
   }
 }

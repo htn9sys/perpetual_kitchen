@@ -1,6 +1,6 @@
 class Unit < ActiveHash::Base
   self.data = [
-    { id: 1, name: '---' },
+    { id: 1, name: '単位を選んでください' },
     { id: 2, name: '個' },
     { id: 3, name: 'pc' },
     { id: 4, name: '本' },

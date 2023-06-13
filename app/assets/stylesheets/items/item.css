@@ -111,7 +111,7 @@
 }
 
 .item-form {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .actions {
@@ -143,4 +143,5 @@
   text-align: left; /* ここを追加 */
   margin-right: 50px; /* 右側のスペースを追加 */
   margin-top: 2px;
+  height: 20px;
 }

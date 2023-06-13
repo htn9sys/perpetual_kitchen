@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const selectButton2 = document.getElementById("select-button3");
   const candidatesContainerCorridor = document.getElementById("candidates-container_corridor");
   const corridorTypeSelect = document.createElement("select");
   const nameInput = document.createElement("input");
@@ -12,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     { id: 5, name: '段ボール' }
   ];
 
-  selectButton2.addEventListener("click", function() {
+  ("click", function() {
     corridorTypeSelect.innerHTML = "";
     let defaultOption = document.createElement("option");
     defaultOption.value = "";
@@ -43,18 +42,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-function saveCandidate(corridorTypeId, name) {
-  if (corridorTypeId === "") {
-    console.log("選択されたタイプがありません。");
+function saveCandidate(storageTypeId, name) {
+  if (storageTypeId === "") {
+    alert("選択されたタイプがありません。");
     return;
   }
-  if (corridorTypeId === "1") {
-    console.log("選択できないタイプです。");
+  if (storageTypeId === "1") {
+    alert("選択できないタイプです。");
     return;
   }
 
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", "/corridors", true);
+  xhr.open("POST", "/storages", true);
   xhr.setRequestHeader("Content-Type", "application/json");
 
   // CSRFトークンをリクエストヘッダに追加する
@@ -68,7 +67,10 @@ function saveCandidate(corridorTypeId, name) {
         hideCandidatesContainer(); // 保存成功時に吹き出しを非表示にする
         location.reload(); // ページをリロードする
       } else {
-        console.log("保存中にエラーが発生しました。");
+        const response = JSON.parse(xhr.responseText);
+        const errors = response.errors;
+        const errorMessage = "入力情報が不足しています: " + errors.join(", ");
+        alert(errorMessage);
       }
     }
   };

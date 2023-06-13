@@ -40,13 +40,13 @@ class ItemsController < ApplicationController
   
     if @item.save
       if @kitchen
-        redirect_to kitchen_items_path(@kitchen), notice: 'Item created successfully.'
+        redirect_to kitchen_items_path(@kitchen)
       elsif @corridor
-        redirect_to corridor_items_path(@corridor), notice: 'Item created successfully.'
+        redirect_to corridor_items_path(@corridor)
       elsif @garden
-        redirect_to garden_items_path(@garden), notice: 'Item created successfully.'
-      elsif @garden
-        redirect_to storage_items_path(@storage), notice: 'Item created successfully.'
+        redirect_to garden_items_path(@garden)
+      elsif @storage
+        redirect_to storage_items_path(@storage)
       end
     else
       flash.now[:alert] = 'Failed to create item.'
@@ -64,13 +64,13 @@ class ItemsController < ApplicationController
   def update
     if @item.update(item_params)
       if @kitchen
-        redirect_to kitchen_items_path(@kitchen), notice: 'Item updated successfully.'
+        redirect_to kitchen_items_path(@kitchen)
       elsif @corridor
-        redirect_to corridor_items_path(@corridor), notice: 'Item updated successfully.'
+        redirect_to corridor_items_path(@corridor)
       elsif @garden
-        redirect_to garden_items_path(@garden), notice: 'Item updated successfully.'
+        redirect_to garden_items_path(@garden)
       elsif @garden
-        redirect_to storage_items_path(@storage), notice: 'Item updated successfully.'
+        redirect_to storage_items_path(@storage)
       end
     else
       flash.now[:alert] = 'Failed to update item.'
@@ -81,13 +81,13 @@ class ItemsController < ApplicationController
   def destroy
     if @item.destroy
       if @kitchen
-        redirect_to kitchen_items_path(@kitchen), notice: 'Item deleted successfully.'
+        redirect_to kitchen_items_path(@kitchen)
       elsif @corridor
-        redirect_to corridor_items_path(@corridor), notice: 'Item deleted successfully.'
+        redirect_to corridor_items_path(@corridor)
       elsif @garden
-        redirect_to garden_items_path(@garden), notice: 'Item deleted successfully.'
+        redirect_to garden_items_path(@garden)
       elsif @garden
-        redirect_to storage_items_path(@storage), notice: 'Item deleted successfully.'
+        redirect_to storage_items_path(@storage)
       end
     else
       flash[:alert] = 'Failed to delete item.'
