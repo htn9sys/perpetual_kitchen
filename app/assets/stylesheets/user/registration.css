@@ -25,15 +25,13 @@
 @media (max-width: 599px) {
   .registration-main {
     width: 100vw;
-    height: 700px;
+    height: 100vh;
     min-height: 760px;
   }
 
   .form-wrap {
     width: 100vw;
-    min-width: 500px;
     width: 100vw;
-    min-height: 650px;
   }
 }
 

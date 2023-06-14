@@ -34,15 +34,13 @@
  @media (max-width: 599px) {
   .item-main {
     width: 100vw;
-    height: 700px;
+    height: 100vw;
     min-height: 760px;
   }
 
   .form-wrap3 {
     width: 100vw;
-    min-width: 500px;
     width: 100vw;
-    min-height: 650px;
   }
 }
 
