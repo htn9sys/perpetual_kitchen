@@ -34,12 +34,9 @@
  @media (max-width: 599px) {
   .item-main {
     width: 100vw;
-    height: 100vw;
-    min-height: 760px;
   }
 
   .form-wrap3 {
-    width: 100vw;
     width: 100vw;
   }
 }

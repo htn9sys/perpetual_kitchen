@@ -25,15 +25,14 @@
 @media (max-width: 599px) {
   .registration-main {
     width: 100vw;
-    height: 100vh;
-    min-height: 760px;
   }
 
   .form-wrap {
     width: 100vw;
-    width: 100vw;
   }
 }
+
+/* スマホ表示時 */
 
 .form-wrap_edit {
   width: 500px;
