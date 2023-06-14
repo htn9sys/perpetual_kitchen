@@ -20,6 +20,23 @@
   position: relative;
 }
 
+/* スマホ表示時 */
+
+@media (max-width: 599px) {
+  .registration-main {
+    width: 100vw;
+    height: 700px;
+    min-height: 760px;
+  }
+
+  .form-wrap {
+    width: 100vw;
+    min-width: 500px;
+    width: 100vw;
+    min-height: 650px;
+  }
+}
+
 .form-wrap_edit {
   width: 500px;
   max-height: 760px;
