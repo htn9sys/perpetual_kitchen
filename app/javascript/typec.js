@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+  const selectButton2 = document.getElementById("select-button3");
   const candidatesContainerCorridor = document.getElementById("candidates-container_corridor");
   const corridorTypeSelect = document.createElement("select");
   const nameInput = document.createElement("input");
@@ -11,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
     { id: 5, name: '段ボール' }
   ];
 
-  ("click", function() {
+  selectButton2.addEventListener("click", function() {
     corridorTypeSelect.innerHTML = "";
     let defaultOption = document.createElement("option");
     defaultOption.value = "";

@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+  const selectButton2 = document.getElementById("select-button5");
   const candidatesContainerStorage = document.getElementById("candidates-container_storage");
   const storageTypeSelect = document.createElement("select");
   const nameInput = document.createElement("input");
@@ -11,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
     { id: 5, name: '段ボール' }
   ];
 
-  ("click", function() {
+  selectButton2.addEventListener("click", function() {
     storageTypeSelect.innerHTML = "";
     let defaultOption = document.createElement("option");
     defaultOption.value = "";
