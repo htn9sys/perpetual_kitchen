@@ -1,5 +1,5 @@
 class GardensController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :set_user
   
   def index
     @gardens = Garden.all
@@ -36,6 +36,14 @@ class GardensController < ApplicationController
   end
 
   private
+
+  def set_user
+    if current_user.nil?
+      redirect_to tops_path
+    else
+      @user = current_user
+    end
+  end
 
   def garden_params
     params.require(:garden).permit(:garden_type_id, :name)

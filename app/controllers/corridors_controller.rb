@@ -1,5 +1,5 @@
 class CorridorsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :set_user
   
   def index
     @corridors = Corridor.all
@@ -36,6 +36,14 @@ class CorridorsController < ApplicationController
   end
 
   private
+
+  def set_user
+    if current_user.nil?
+      redirect_to tops_path
+    else
+      @user = current_user
+    end
+  end
 
   def corridor_params
     params.require(:corridor).permit(:corridor_type_id, :name)

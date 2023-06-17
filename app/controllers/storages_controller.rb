@@ -1,5 +1,5 @@
 class StoragesController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :set_user
   
   def index
     @storages = Storage.all
@@ -36,6 +36,14 @@ class StoragesController < ApplicationController
   end
 
   private
+
+  def set_user
+    if current_user.nil?
+      redirect_to tops_path
+    else
+      @user = current_user
+    end
+  end
 
   def storage_params
     params.require(:storage).permit(:storage_type_id, :name)

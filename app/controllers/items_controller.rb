@@ -137,7 +137,11 @@ class ItemsController < ApplicationController
   end
 
   def set_user
-    @user = current_user
+    if current_user.nil?
+      redirect_to tops_path
+    else
+      @user = current_user
+    end
   end
 
   def item_params
