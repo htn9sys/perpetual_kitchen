@@ -57,6 +57,7 @@ function saveCandidate(storageTypeId, name) {
   xhr.open("POST", "/storages", true);
   xhr.setRequestHeader("Content-Type", "application/json");
 
+  // CSRFトークンをリクエストヘッダに追加する
   const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   xhr.setRequestHeader("X-CSRF-Token", token);
 
@@ -64,9 +65,8 @@ function saveCandidate(storageTypeId, name) {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
         console.log("保存が成功しました。");
-        hideCandidatesContainer();
-        // location.reload();
-        window.location.href = "/new_page";
+        hideCandidatesContainer(); // 保存成功時に吹き出しを非表示にする
+        location.reload(); // ページをリロードする
       } else {
         console.log("保存中にエラーが発生しました。");
       }
@@ -74,8 +74,8 @@ function saveCandidate(storageTypeId, name) {
   };
 
   const data = {
-    corridor: {
-      corridor_type_id: corridorTypeId,
+    storage: {
+      storage_type_id: storageTypeId,
       name: name
     }
   };
@@ -83,7 +83,7 @@ function saveCandidate(storageTypeId, name) {
   xhr.send(JSON.stringify(data));
 
   function hideCandidatesContainer() {
-    const candidatesContainerCorridor = document.getElementById("candidates-container_corridor");
-    candidatesContainerCorridor.style.display = "none";
+    const candidatesContainerstorage = document.getElementById("candidates-container_storage");
+    candidatesContainerstorage.style.display = "none";
   }
 }

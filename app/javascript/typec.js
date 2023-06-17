@@ -43,18 +43,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-function saveCandidate(storageTypeId, name) {
-  if (storageTypeId === "") {
+function saveCandidate(corridorTypeId, name) {
+  if (corridorTypeId === "") {
     alert("選択されたタイプがありません。");
     return;
   }
-  if (storageTypeId === "1") {
+  if (corridorTypeId === "1") {
     alert("選択できないタイプです。");
     return;
   }
 
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", "/storages", true);
+  xhr.open("POST", "/corridors", true);
   xhr.setRequestHeader("Content-Type", "application/json");
 
   // CSRFトークンをリクエストヘッダに追加する
@@ -68,10 +68,7 @@ function saveCandidate(storageTypeId, name) {
         hideCandidatesContainer(); // 保存成功時に吹き出しを非表示にする
         location.reload(); // ページをリロードする
       } else {
-        const response = JSON.parse(xhr.responseText);
-        const errors = response.errors;
-        const errorMessage = "入力情報が不足しています: " + errors.join(", ");
-        alert(errorMessage);
+        console.log("保存中にエラーが発生しました。");
       }
     }
   };
