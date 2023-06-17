@@ -10,11 +10,11 @@
 
         <% @corridors.each do |corridor| %>
           <% if corridor.corridor_type_id == 2 %>
-            <div id="corridor_<%= corridor.id %>" class="draggable refrigerator" data-type="<%= corridor.corridor_type_id %>">
+            <div id="refrigerator_<%= corridor.id %>" class="draggable refrigerator" data-type="<%= corridor.corridor_type_id %>">
               <%= render 'shared/refrigerator', type_id: corridor.corridor_type_id %>
             </div>
           <% elsif corridor.corridor_type_id == 3 %>
-            <div id="corridor_large_<%= corridor.id %>" class="draggable refrigerator_large" data-type="<%= corridor.corridor_type_id %>">
+            <div id="refrigerator_large_<%= corridor.id %>" class="draggable refrigerator_large" data-type="<%= corridor.corridor_type_id %>">
               <%= render 'shared/refrigerator_large', type_id: corridor.corridor_type_id %>
             </div>
           <% elsif corridor.corridor_type_id == 4 %>
